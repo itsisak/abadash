@@ -1,4 +1,4 @@
-package exampleproject;
+package Abadash;
 
 public class Calculator {
     private String operator;
