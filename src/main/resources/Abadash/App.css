@@ -1,0 +1,7 @@
+
+
+
+#pauseBtn {
+    -fx-background-color: none;
+    -fx-graphic: url("icons/pause.png");
+}

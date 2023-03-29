@@ -1,4 +1,4 @@
-package exampleproject;
+package Abadash;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
