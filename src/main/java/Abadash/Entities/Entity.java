@@ -1,15 +1,17 @@
 package Abadash.Entities;
 
 import Abadash.Controllers.GameController;
-import Abadash.Hitbox;
+import javafx.scene.shape.Shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+
+import static Abadash.Constants.*;
 
 public abstract class Entity {
     protected Image sprite = new Image("Abadash/icons/default.png");
     protected double x, y;
-    protected double width = GameController.BLOCK_SIZE, height = GameController.BLOCK_SIZE;
-    protected Hitbox hitbox;
+    protected double width = BLOCK_SIZE, height = BLOCK_SIZE;
+    protected Shape hitbox;
 
     public double getX() {
         return x;
