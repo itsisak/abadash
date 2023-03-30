@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-# TDT4100-TestProject
-
-=======
-# tdt4100_v2022_prosjekt_boilerplate
->>>>>>> d4fafba (Created project)
-=======
-# Skjelettprosjekt for TDT4100 prosjekt V2022
-=======
 # Skjelettprosjekt for TDT4100 prosjekt V2023
->>>>>>> 68aa314 (Update README for 2023)
 
 Dette repoet er et skjelettprosjekt for TDT4100 prosjektet våren 2023.
 
@@ -97,8 +84,3 @@ I tillegg til alt dette er det laget en liten [eksempel testfil](src/test/java/e
 | 15    | 10/4 | 14/4 | Fullføre appen med tilhørende dokumentasjon |
 
 **_LYKKE TIL_**
->>>>>>> 8c53293 (Update readme and deleted launch.json)
-=======
-# prosjekt-base
-
->>>>>>> 90591c3 (Initial commit)

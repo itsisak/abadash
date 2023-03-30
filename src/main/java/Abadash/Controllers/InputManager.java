@@ -1,4 +1,4 @@
-package abadash;
+package Abadash.Controllers;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
