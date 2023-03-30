@@ -1,9 +1,6 @@
 package Abadash.Entities;
 
 public class Block extends Entity {
-    // Dimensions
-    private double width = 20;
-    private double height = 20;
 
     // Constructors
     public Block() {
@@ -15,4 +12,9 @@ public class Block extends Entity {
         this.height = height;
     }
 
+    
+    @Override
+    public void hit() {
+        System.out.println("Hit Block");
+    }
 }

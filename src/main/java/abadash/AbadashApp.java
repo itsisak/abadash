@@ -1,4 +1,4 @@
-package abadash;
+package Abadash;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
