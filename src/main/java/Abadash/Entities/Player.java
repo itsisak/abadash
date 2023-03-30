@@ -1,11 +1,14 @@
 package Abadash.Entities;
 
 
+import Abadash.Hitbox;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 import java.net.URL;
+import java.util.List;
 
 import static Abadash.Constants.SCENE_HEIGHT;
 import static Abadash.Constants.BLOCK_SIZE;
@@ -21,7 +24,7 @@ public class Player extends Entity {
         height = BLOCK_SIZE;
 
         this.sprite = new Image("Abadash/sprites/player.png");
-        this.hitbox = new Rectangle(0.0, 0.0, width, height);
+        this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, width, height)));
     }
 
     @Override
@@ -30,8 +33,7 @@ public class Player extends Entity {
         y += velocityY * deltaTime;
         x += VELOCITY_X * deltaTime;
         if (y > SCENE_HEIGHT - BLOCK_SIZE)
-            y = SCENE_HEIGHT - BLOCK_SIZE; 
-        System.out.println("deltaTime: " + deltaTime + "| x: " + x + "| y: " + y + "| velocity: " + velocityY + "| GRAVITY: " + GRAVITY_CONSTANT);
+            y = SCENE_HEIGHT - BLOCK_SIZE;
     }
 
     public void setVelocityY(double velocityY) {
