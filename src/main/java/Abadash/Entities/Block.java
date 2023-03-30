@@ -28,6 +28,7 @@ public class Block extends Entity {
     public void handleHitPlayer(Player player) {
         player.setVelocityY(0.0);
         player.setY(getY() - player.getHeight());
+        player.setOnGround(true);
     }
 
     @Override
