@@ -3,6 +3,7 @@ package Abadash.Controllers;
 import Abadash.Entities.Block;
 import Abadash.Entities.Entity;
 import Abadash.Entities.Player;
+import Abadash.Map;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -21,19 +22,23 @@ public class GameController {
     private InputManager inputManager;
     private Player player;
     private List<Entity> entities;
+    private Map map;
 
     @FXML
     private Canvas canvas;
     @FXML
     public void initialize() {
-        entities = new ArrayList<>();
+        map = new Map("A3.json");
+        entities = map.getEntities();
         player = new Player(0, 0);
         entities.add(player);
-        entities.add(new Block(0, (int) (FLOOR_HEIGHT / BLOCK_SIZE) - 1, 50, 1));
-        entities.add(new Block(6, 4, 1, 1));
-        entities.add(new Block(8, 5, 1, 1));
-        entities.add(new Block(10, 6, 1, 1));
-        entities.add(new Block(12, 7, 5, 1));
+        // entities.add(new Block(0, (int) (FLOOR_HEIGHT / BLOCK_SIZE) - 1, 50, 1));
+        // entities.add(new Block(6, 4, 1, 1));
+        // entities.add(new Block(8, 5, 1, 1));
+        // entities.add(new Block(10, 6, 1, 1));
+        // entities.add(new Block(12, 7, 5, 1));
+
+
 
         inputManager = new InputManager();
         run();
@@ -82,8 +87,6 @@ public class GameController {
 
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (Entity entity : entities) {
-            entity.render(gc);
-        }
+        map.render(gc);
     }
 }
