@@ -1,5 +1,7 @@
 package Abadash.Controllers;
 
+import Abadash.Entities.Entity;
+import Abadash.Entities.Player;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -11,13 +13,16 @@ import javafx.scene.paint.Color;
 import java.security.Key;
 
 public class GameController {
+    private InputManager inputManager;
+    private Entity player;
+
+    public static final double BLOCK_SIZE = 32;
+
     @FXML
     private Canvas canvas;
-
-    private InputManager inputManager;
-
     @FXML
     public void initialize() {
+        player = new Player(0, 0);
         inputManager = new InputManager();
         run();
     }
@@ -54,5 +59,6 @@ public class GameController {
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // render something
+        player.render(gc);
     }
 }
