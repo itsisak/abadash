@@ -1,6 +1,7 @@
 package Abadash.Entities;
 
 import Abadash.Controllers.GameController;
+import Abadash.Hitbox;
 import javafx.scene.shape.Shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -11,7 +12,7 @@ public abstract class Entity {
     protected Image sprite = new Image("Abadash/icons/default.png");
     protected double x, y;
     protected double width = BLOCK_SIZE, height = BLOCK_SIZE;
-    protected Shape hitbox;
+    protected Hitbox hitbox;
 
     public double getX() {
         return x;
@@ -34,8 +35,7 @@ public abstract class Entity {
     }
 
     public boolean collidesWith(Entity other) {
-        //return this.hitbox.intersect(getX() - other.getX(), getY() - other.getY(), other.hitbox);
-        return false;
+        return this.hitbox.intersects(other.getX() - getX(), other.getY() - getY(), other.hitbox);
     }
 
     public void handleHitPlayer(Player player) {

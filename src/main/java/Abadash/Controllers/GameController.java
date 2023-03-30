@@ -27,8 +27,6 @@ public class GameController {
     private Player player;
     private List<Entity> entities;
 
-    public static final double BLOCK_SIZE = 32;
-
     @FXML
     private Canvas canvas;
     @FXML
