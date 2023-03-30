@@ -5,11 +5,13 @@ import Abadash.Hitbox;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
-import java.util.List;
+import java.net.URL;
+import static Abadash.Constants.SCENE_HEIGHT;
+import static Abadash.Constants.BLOCK_SIZE;
+import static Abadash.Constants.GRAVITY_CONSTANT;
+import static Abadash.Constants.VELOCITY_X;
 
 public class Player extends Entity {
-    private static final double GRAVITY_CONSTANT = 1000;
-    private static final double VELOCITY_X = 150;
     private double velocityY;
     public Player(double x, double y) {
         this.x = x;
@@ -26,6 +28,9 @@ public class Player extends Entity {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
         x += VELOCITY_X * deltaTime;
+        if (y > SCENE_HEIGHT - BLOCK_SIZE)
+            y = SCENE_HEIGHT - BLOCK_SIZE; 
+        System.out.println("deltaTime: " + deltaTime + "| x: " + x + "| y: " + y + "| velocity: " + velocityY + "| GRAVITY: " + GRAVITY_CONSTANT);
     }
 
     public void setVelocityY(double velocityY) {
