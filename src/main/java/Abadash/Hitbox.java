@@ -17,7 +17,7 @@ public class Hitbox {
     public boolean intersects(double offsetX, double offsetY, Hitbox other) {
         for (Rectangle2D rectangle : rectangles) {
             for (Rectangle2D otherRectangle : other.getRectangles()) {
-                if(otherRectangle.getMaxX() > rectangle.getMinX() + offsetX && otherRectangle.getMaxY() > rectangle.getMinY() + offsetY && otherRectangle.getMinX() < rectangle.getMaxX() + offsetX && otherRectangle.getMinY() < rectangle.getMaxY() + offsetY)
+                if(rectangle.intersects(otherRectangle.getMinX() + offsetX, otherRectangle.getMinY() + offsetY, otherRectangle.getWidth(), otherRectangle.getHeight()))
                     return true;
             }
         }
