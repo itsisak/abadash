@@ -1,11 +1,12 @@
 package Abadash.Entities;
 
-import Abadash.Controllers.GameController;
-import Abadash.Hitbox;
-import javafx.geometry.Rectangle2D;
+
 import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 import java.net.URL;
+
 import static Abadash.Constants.SCENE_HEIGHT;
 import static Abadash.Constants.BLOCK_SIZE;
 import static Abadash.Constants.GRAVITY_CONSTANT;
@@ -16,11 +17,11 @@ public class Player extends Entity {
     public Player(double x, double y) {
         this.x = x;
         this.y = y;
-        width = GameController.BLOCK_SIZE;
-        height = GameController.BLOCK_SIZE;
+        width = BLOCK_SIZE;
+        height = BLOCK_SIZE;
 
         this.sprite = new Image("Abadash/sprites/player.png");
-        this.hitbox = new Hitbox(List.of(new Rectangle2D(0.0, 0.0, width, height)));
+        this.hitbox = new Rectangle(0.0, 0.0, width, height);
     }
 
     @Override
