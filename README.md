@@ -84,8 +84,3 @@ I tillegg til alt dette er det laget en liten [eksempel testfil](src/test/java/e
 | 15    | 10/4 | 14/4 | Fullføre appen med tilhørende dokumentasjon |
 
 **_LYKKE TIL_**
->>>>>>> 8c53293 (Update readme and deleted launch.json)
-=======
-# prosjekt-base
-
->>>>>>> 90591c3 (Initial commit)
