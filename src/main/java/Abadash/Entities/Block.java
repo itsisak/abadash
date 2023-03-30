@@ -11,10 +11,4 @@ public class Block extends Entity {
         this.width = width;
         this.height = height;
     }
-
-    
-    @Override
-    public void hit() {
-        System.out.println("Hit Block");
-    }
 }

@@ -1,12 +1,15 @@
 package Abadash.Entities;
 
-public class Entity {
-    // Position of entity
-    protected double xPos, yPos;
-    // Default dimensions
-    protected double width, height = 20;
+import Abadash.Controllers.GameController;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
-    public void hit() {
-        System.out.println("Hit Entity");
+public abstract class Entity {
+    protected Image sprite;
+    protected double x, y;
+    protected double width = GameController.BLOCK_SIZE, height = GameController.BLOCK_SIZE;
+
+    public void render(GraphicsContext gc) {
+        gc.drawImage(sprite, x, y, width, height);
     }
 }
