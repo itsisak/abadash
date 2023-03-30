@@ -17,7 +17,7 @@ import java.util.List;
 
 public class GameController {
     private InputManager inputManager;
-    private Entity player;
+    private Player player;
     private List<Entity> entities;
 
     public static final double BLOCK_SIZE = 32;
@@ -66,6 +66,9 @@ public class GameController {
 
     public void update(double deltaTime) {
         for (Entity entity : entities) {
+            if (entity != player && entity.collidesWith(player)) {
+                entity.handleHitPlayer(player);
+            }
             entity.update(deltaTime);
         }
     }
