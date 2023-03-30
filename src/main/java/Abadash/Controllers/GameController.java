@@ -65,12 +65,13 @@ public class GameController {
     }
 
     public void update(double deltaTime) {
-        // do something
+        for (Entity entity : entities) {
+            entity.update(deltaTime);
+        }
     }
 
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        // render something
         for (Entity entity : entities) {
             entity.render(gc);
         }
