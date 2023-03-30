@@ -34,7 +34,8 @@ public abstract class Entity {
     }
 
     public boolean collidesWith(Entity other) {
-        return this.hitbox.intersect(getX() - other.getX(), getY() - other.getY(), other.hitbox);
+        //return this.hitbox.intersect(getX() - other.getX(), getY() - other.getY(), other.hitbox);
+        return false;
     }
 
     public void handleHitPlayer(Player player) {

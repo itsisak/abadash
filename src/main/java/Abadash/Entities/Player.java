@@ -31,7 +31,6 @@ public class Player extends Entity {
         x += VELOCITY_X * deltaTime;
         if (y > SCENE_HEIGHT - BLOCK_SIZE)
             y = SCENE_HEIGHT - BLOCK_SIZE; 
-        System.out.println("deltaTime: " + deltaTime + "| x: " + x + "| y: " + y + "| velocity: " + velocityY + "| GRAVITY: " + GRAVITY_CONSTANT);
     }
 
     public void setVelocityY(double velocityY) {

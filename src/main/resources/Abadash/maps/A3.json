@@ -1,0 +1,26 @@
+{
+    "entities": [
+        {
+            "type": "block",
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 1
+        },
+        {
+            "type": "block",
+            "x": 8,
+            "y": 0,
+            "width": 5,
+            "height": 2
+        },
+        {
+            "type": "block",
+            "x": 0,
+            "y": 10,
+            "width": 30,
+            "height": 4
+        }
+
+    ]
+}
