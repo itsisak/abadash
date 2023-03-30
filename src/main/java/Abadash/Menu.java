@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.Exception;
 
-public class App extends Application {
+public class Menu extends Application {
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -18,7 +18,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws IOException {
         try {
             primaryStage.setTitle("Abadash");
-            primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("App.fxml"))));
+            primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Menu.fxml"))));
             primaryStage.show();
         } catch (Exception e) {
             System.out.println("---- ERROR ----");

@@ -1,4 +1,4 @@
-package abadash;
+package Abadash.Controllers;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
