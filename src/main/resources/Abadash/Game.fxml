@@ -5,7 +5,6 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.canvas.Canvas?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
@@ -13,8 +12,8 @@
             onKeyPressed="#handleKeyPress"
             onKeyReleased="#handleKeyRelease"
             fx:controller="Abadash.Controllers.GameController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="${HEIGHT}" prefWidth="${WIDTH}">
     <children>
-        <Canvas fx:id="canvas" height="400.0" width="600.0"/>
+        <Canvas fx:id="canvas" height="${HEIGHT}" width="${WIDTH}"/>
     </children>
 </AnchorPane>
