@@ -21,7 +21,7 @@ public class Player extends Entity {
         width = BLOCK_SIZE;
         height = BLOCK_SIZE;
 
-        this.sprite = new Image("Abadash/sprites/player.png");
+        this.sprite = new Image("Abadash/sprites/abakule.png");
         this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, width, height)));
     }
 
@@ -29,19 +29,14 @@ public class Player extends Entity {
     public void update(double deltaTime) {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
-
-        if (y > FLOOR_HEIGHT - BLOCK_SIZE) {
-            y = FLOOR_HEIGHT - BLOCK_SIZE;
-            onGround = true;
-        }else {
-            onGround = false;
-        }
     }
 
     public void jump() {
+        System.out.println(onGround);
         if (onGround) {
             velocityY = -250;
         }
+        onGround = false;
     }
 
     public void setVelocityY(double velocityY) {

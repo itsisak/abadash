@@ -14,13 +14,13 @@ import java.util.List;
 import static Abadash.Constants.*;
 
 public class Block extends Entity {
-    public Block(int x, int y, int width, int height) {
+    public Block(double x, double y, int width, int height) {
         this.x = x * BLOCK_SIZE;
         this.y = FLOOR_HEIGHT - (y + 1) * BLOCK_SIZE;
         this.width = width * BLOCK_SIZE;
         this.height = height * BLOCK_SIZE;
 
-        sprite = new Image("Abadash/sprites/block.png");
+        // sprite = new Image("Abadash/sprites/block.png");
         hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, this.width, this.height)));
     }
 

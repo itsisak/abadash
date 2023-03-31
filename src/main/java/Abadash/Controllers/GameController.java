@@ -3,6 +3,7 @@ package Abadash.Controllers;
 import Abadash.Entities.Block;
 import Abadash.Entities.Entity;
 import Abadash.Entities.Player;
+import Abadash.Entities.Floor;
 import Abadash.Map;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -37,15 +38,9 @@ public class GameController {
     public void initialize() {
         map = new Map("A3.json");
         entities = map.getEntities();
-        player = new Player(0, 0);
+        player = new Player(0, 10);
         entities.add(player);
-        // entities.add(new Block(0, (int) (FLOOR_HEIGHT / BLOCK_SIZE) - 1, 50, 1));
-        // entities.add(new Block(6, 4, 1, 1));
-        // entities.add(new Block(8, 5, 1, 1));
-        // entities.add(new Block(10, 6, 1, 1));
-        // entities.add(new Block(12, 7, 5, 1));
-
-
+        entities.add(new Floor());
 
         String map = "MAP NOT FOUND";
         Path filePath = Path.of("src/main/resources/Abadash/maps/A3.json");
@@ -55,7 +50,6 @@ public class GameController {
             System.out.println(e);
         }
         JSONArray mapArr = new JSONObject(map).getJSONArray("entities");
-        System.out.println(mapArr);
         for (int i = 0; i < mapArr.length(); i++) {
            JSONObject entityInfo =  mapArr.getJSONObject(i);
            switch (entityInfo.getString("type")) {
