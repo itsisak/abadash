@@ -11,9 +11,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
+
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static Abadash.Constants.*;
 
@@ -34,6 +41,26 @@ public class GameController {
         entities.add(new Block(8, 5, 1, 1));
         entities.add(new Block(10, 6, 1, 1));
         entities.add(new Block(12, 7, 5, 1));
+
+        String map = "MAP NOT FOUND";
+        Path filePath = Path.of("src/main/resources/Abadash/maps/A3.json");
+        try {
+          map = Files.readString(filePath);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        JSONArray mapArr = new JSONObject(map).getJSONArray("entities");
+        System.out.println(mapArr);
+        for (int i = 0; i < mapArr.length(); i++) {
+           JSONObject entityInfo =  mapArr.getJSONObject(i);
+           switch (entityInfo.getString("type")) {
+               case "block":
+                    entities.add(new Block(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("width"), entityInfo.getInt("height")));
+                    break;
+            }
+        }
+
+
 
         inputManager = new InputManager();
         run();
