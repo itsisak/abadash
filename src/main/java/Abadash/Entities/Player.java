@@ -10,13 +10,11 @@ import javafx.scene.shape.Shape;
 import java.net.URL;
 import java.util.List;
 
-import static Abadash.Constants.SCENE_HEIGHT;
-import static Abadash.Constants.BLOCK_SIZE;
-import static Abadash.Constants.GRAVITY_CONSTANT;
-import static Abadash.Constants.VELOCITY_X;
+import static Abadash.Constants.*;
 
 public class Player extends Entity {
     private double velocityY;
+    private boolean onGround = false;
     public Player(double x, double y) {
         this.x = x;
         this.y = y;
@@ -31,12 +29,28 @@ public class Player extends Entity {
     public void update(double deltaTime) {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
-        x += VELOCITY_X * deltaTime;
-        if (y > SCENE_HEIGHT - BLOCK_SIZE)
-            y = SCENE_HEIGHT - BLOCK_SIZE; 
+
+        if (y > FLOOR_HEIGHT - BLOCK_SIZE) {
+            y = FLOOR_HEIGHT - BLOCK_SIZE;
+            onGround = true;
+        }else {
+            onGround = false;
+        }
+    }
+
+    public void jump() {
+        if (onGround) {
+            velocityY = -250;
+        }
     }
 
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;
+    }
+    public void setOnGround(boolean onGround) {
+        this.onGround = onGround;
+    }
+    public boolean isOnGround() {
+        return onGround;
     }
 }

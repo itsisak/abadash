@@ -22,6 +22,8 @@ import org.json.JSONObject;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static Abadash.Constants.*;
+
 public class GameController {
     private InputManager inputManager;
     private Player player;
@@ -34,7 +36,7 @@ public class GameController {
         entities = new ArrayList<>();
         player = new Player(0, 0);
         entities.add(player);
-        entities.add(new Block(0, 3, 5, 1));
+        entities.add(new Block(0, (int) (FLOOR_HEIGHT / BLOCK_SIZE) - 1, 50, 1));
         entities.add(new Block(6, 4, 1, 1));
         entities.add(new Block(8, 5, 1, 1));
         entities.add(new Block(10, 6, 1, 1));
@@ -90,9 +92,16 @@ public class GameController {
     }
 
     public void update(double deltaTime) {
+        if (inputManager.isPressed(KeyCode.SPACE)) {
+            player.jump();
+        }
+
         for (Entity entity : entities) {
-            if (entity != player && entity.collidesWith(player)) {
-                entity.handleHitPlayer(player);
+            if (entity != player) {
+                entity.setX(entity.getX() - VELOCITY_X * deltaTime);
+                if (entity.collidesWith(player)) {
+                    entity.handleHitPlayer(player);
+                }
             }
             entity.update(deltaTime);
         }
