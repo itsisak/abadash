@@ -1,26 +1,32 @@
 {
-    "entities": [
-        {
-            "type": "block",
-            "x": 0,
-            "y": 0,
-            "width": 3,
-            "height": 1
-        },
-        {
-            "type": "block",
-            "x": 8,
-            "y": 0,
-            "width": 5,
-            "height": 2
-        },
-        {
-            "type": "block",
-            "x": 0,
-            "y": 10,
-            "width": 30,
-            "height": 4
-        }
-
-    ]
+  "entities": [
+    {
+      "type": "block",
+      "x": 0,
+      "y": 0,
+      "width": 20,
+      "height": 1
+    },
+    {
+      "type": "block",
+      "x": 30,
+      "y": 0,
+      "width": 10,
+      "height": 1
+    },
+    {
+      "type": "block",
+      "x": 60,
+      "y": 0,
+      "width": 10,
+      "height": 1
+    },
+    {
+      "type": "block",
+      "x": 80,
+      "y": 0,
+      "width": 10,
+      "height": 1
+    }
+  ]
 }

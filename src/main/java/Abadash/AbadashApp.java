@@ -28,6 +28,8 @@ public class AbadashApp extends Application {
         gameScene.getRoot().requestFocus();
         primaryStage.setScene(gameScene);
 
+        gameScene.getStylesheets().addAll(this.getClass().getResource("App.css").toExternalForm());
+
         primaryStage.show();
     }
 }

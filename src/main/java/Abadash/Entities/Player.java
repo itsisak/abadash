@@ -16,8 +16,8 @@ public class Player extends Entity {
     private double velocityY;
     private boolean onGround = false;
     public Player(double x, double y) {
-        this.x = x;
-        this.y = y;
+        this.x = x + SCENE_WIDTH / 2;
+        this.y = y + FLOOR_HEIGHT;
         width = BLOCK_SIZE;
         height = BLOCK_SIZE;
 

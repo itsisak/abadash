@@ -1,4 +1,6 @@
-
+.root {
+    -fx-background-image: url("maps/blueBackground.jpg");
+}
 
 
 #pauseBtn {
