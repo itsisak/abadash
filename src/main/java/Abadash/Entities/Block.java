@@ -33,8 +33,8 @@ public class Block extends Entity {
 
     @Override
     public void render(GraphicsContext gc) {
-        for (int i = 0; i < height/BLOCK_SIZE; i++) {
-            for (int j = 0; j < width/BLOCK_SIZE; j++) {
+        for (int i = 0; i < height / BLOCK_SIZE; i++) {
+            for (int j = 0; j < width / BLOCK_SIZE; j++) {
                 gc.drawImage(sprite, x + j * BLOCK_SIZE, y + i * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
             }
         }
