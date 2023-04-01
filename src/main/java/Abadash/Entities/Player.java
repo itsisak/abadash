@@ -29,12 +29,12 @@ public class Player extends Entity {
     public void update(double deltaTime) {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
+        onGround = false;
     }
 
     public void jump() {
-        System.out.println(onGround);
         if (onGround) {
-            velocityY = -250;
+            velocityY = -400;
         }
         onGround = false;
     }

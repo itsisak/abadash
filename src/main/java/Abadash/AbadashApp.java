@@ -18,6 +18,7 @@ public class AbadashApp extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("AbaDash");
+        primaryStage.setResizable(false);
 
         FXMLLoader loader = new FXMLLoader();
         loader.getNamespace().put("WIDTH", SCENE_WIDTH);

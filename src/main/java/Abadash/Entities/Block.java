@@ -20,7 +20,7 @@ public class Block extends Entity {
         this.width = width * BLOCK_SIZE;
         this.height = height * BLOCK_SIZE;
 
-        // sprite = new Image("Abadash/sprites/block.png");
+        sprite = new Image("Abadash/sprites/block.png");
         hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, this.width, this.height)));
     }
 
