@@ -2,6 +2,7 @@ package Abadash.Entities;
 
 
 import Abadash.Hitbox;
+import Abadash.ImageGallery;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
@@ -21,7 +22,7 @@ public class Player extends Entity {
         width = BLOCK_SIZE;
         height = BLOCK_SIZE;
 
-        this.sprite = new Image("Abadash/sprites/player.png");
+        this.sprite = ImageGallery.getInstance().load("Abadash/sprites/player.png");
         this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, width, height)));
     }
 
