@@ -30,19 +30,14 @@ public class Player extends Entity {
     public void update(double deltaTime) {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
-
-        if (y > FLOOR_HEIGHT - BLOCK_SIZE) {
-            y = FLOOR_HEIGHT - BLOCK_SIZE;
-            onGround = true;
-        }else {
-            onGround = false;
-        }
+        onGround = false;
     }
 
     public void jump() {
         if (onGround) {
-            velocityY = -250;
+            velocityY = -400;
         }
+        onGround = false;
     }
 
     public void setVelocityY(double velocityY) {

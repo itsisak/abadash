@@ -3,6 +3,7 @@ package Abadash.Controllers;
 import Abadash.Entities.Block;
 import Abadash.Entities.Entity;
 import Abadash.Entities.Player;
+import Abadash.Entities.Floor;
 import Abadash.Map;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -11,7 +12,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-
 
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
@@ -29,45 +29,15 @@ public class GameController {
     private InputManager inputManager;
     private Player player;
     private List<Entity> entities;
-    private Map map;
+    private int attempts = 0;
 
     @FXML
     private Canvas canvas;
+
     @FXML
     public void initialize() {
-        map = new Map("A3.json");
-        entities = map.getEntities();
-        player = new Player(0, 0);
-        entities.add(player);
-        // entities.add(new Block(0, (int) (FLOOR_HEIGHT / BLOCK_SIZE) - 1, 50, 1));
-        // entities.add(new Block(6, 4, 1, 1));
-        // entities.add(new Block(8, 5, 1, 1));
-        // entities.add(new Block(10, 6, 1, 1));
-        // entities.add(new Block(12, 7, 5, 1));
-
-
-
-        String map = "MAP NOT FOUND";
-        Path filePath = Path.of("src/main/resources/Abadash/maps/A3.json");
-        try {
-          map = Files.readString(filePath);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        JSONArray mapArr = new JSONObject(map).getJSONArray("entities");
-        System.out.println(mapArr);
-        for (int i = 0; i < mapArr.length(); i++) {
-           JSONObject entityInfo =  mapArr.getJSONObject(i);
-           switch (entityInfo.getString("type")) {
-               case "block":
-                    entities.add(new Block(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("width"), entityInfo.getInt("height")));
-                    break;
-            }
-        }
-
-
-
         inputManager = new InputManager();
+        loadEntities();
         run();
     }
 
@@ -75,10 +45,21 @@ public class GameController {
     public void handleKeyPress(KeyEvent keyEvent) {
         inputManager.handleKeyPress(keyEvent);
     }
-
+    
     @FXML
     public void handleKeyRelease(KeyEvent keyEvent) {
         inputManager.handleKeyRelease(keyEvent);
+    }
+
+    private void loadEntities() {
+        entities = new ArrayList<>();
+        
+        player = new Player(0, 1);
+        entities.add(player);
+        
+        Map map = new Map("A3.json");
+        for (Entity e : map.getEntities())
+            entities.add(e);
     }
 
     public void run() {
@@ -86,6 +67,7 @@ public class GameController {
         final long startTime = System.nanoTime();
         new AnimationTimer() {
             long lastFrameTime = startTime;
+
             public void handle(long currentTime) {
                 double deltaTime = (currentTime - lastFrameTime) / 1000000000.0;
                 lastFrameTime = currentTime;
@@ -100,7 +82,9 @@ public class GameController {
         if (inputManager.isPressed(KeyCode.SPACE)) {
             player.jump();
         }
-
+        if (inputManager.isClicked(KeyCode.R)) {
+            restart();
+        }
         for (Entity entity : entities) {
             if (entity != player) {
                 entity.setX(entity.getX() - VELOCITY_X * deltaTime);
@@ -112,8 +96,16 @@ public class GameController {
         }
     }
 
+    public void restart() {
+        attempts++;
+        loadEntities();
+
+        System.out.println("Attempt: " + attempts);
+    }
+
+
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        map.render(gc);
+        entities.forEach(e -> e.render(gc));
     }
 }

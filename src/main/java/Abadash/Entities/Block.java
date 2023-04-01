@@ -15,7 +15,7 @@ import java.util.List;
 import static Abadash.Constants.*;
 
 public class Block extends Entity {
-    public Block(int x, int y, int width, int height) {
+    public Block(double x, double y, int width, int height) {
         this.x = x * BLOCK_SIZE;
         this.y = FLOOR_HEIGHT - (y + 1) * BLOCK_SIZE;
         this.width = width * BLOCK_SIZE;
