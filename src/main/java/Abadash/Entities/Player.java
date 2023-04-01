@@ -34,7 +34,6 @@ public class Player extends Entity {
     }
 
     public void jump() {
-        System.out.println(onGround);
         if (onGround) {
             velocityY = -400;
         }

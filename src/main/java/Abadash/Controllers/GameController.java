@@ -51,7 +51,7 @@ public class GameController {
         inputManager.handleKeyRelease(keyEvent);
     }
 
-    public void loadEntities() {
+    private void loadEntities() {
         entities = new ArrayList<>();
         
         player = new Player(0, 1);
