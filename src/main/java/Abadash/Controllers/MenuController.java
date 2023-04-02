@@ -1,9 +1,11 @@
 package Abadash.Controllers;
 
+import javafx.fxml.FXML;
+
 public class MenuController {
-   
-    
-    public void handleButtonClick() {
-        System.out.println("Pause Clicked");
+
+    @FXML
+    public void startGame() {
+
     }
 }

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&display=swap');
+
+.root {
+    /* -fx-background-color: rgb(0, 92, 204); */
+    /* -fx-background: none; */
+}
+
+#title {
+    -fx-font-weight: bold;
+    -fx-font-family: "Changa One", cursive;
+    -fx-fill: white;
+    -fx-stroke: rgb(0, 229, 114);
+    -fx-stroke-width: 2px;
+}
+

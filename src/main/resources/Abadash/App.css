@@ -2,6 +2,9 @@
     -fx-background-image: url("maps/blueBackground.jpg");
 }
 
+#attemptTXT {
+    -fx-fill: white;
+}
 
 #pauseBtn {
     -fx-background-color: none;

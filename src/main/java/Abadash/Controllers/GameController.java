@@ -3,23 +3,24 @@ package Abadash.Controllers;
 import Abadash.Constants;
 import Abadash.Entities.*;
 import Abadash.Map;
+
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static Abadash.Constants.*;
 
@@ -32,8 +33,25 @@ public class GameController {
     @FXML
     private Canvas canvas;
 
+    // @FXML
+    // private Text attemptTXT;
+
     @FXML
+    private BorderPane menuContainer;
+
+    private Pane menuPane;
+
+    // @FXML
     public void initialize() {
+        // attemptTXT.toFront();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Abadash/Menu.fxml"));
+        try {
+            menuPane = fxmlLoader.load();
+        } catch (IOException e) {
+            System.out.println(e);
+            menuPane = null;
+        }
+        menuContainer.setCenter(menuPane);
         inputManager = new InputManager();
         loadEntities();
         run();
