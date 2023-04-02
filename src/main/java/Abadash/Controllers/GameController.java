@@ -1,5 +1,6 @@
 package Abadash.Controllers;
 
+import Abadash.Constants;
 import Abadash.Entities.*;
 import Abadash.Map;
 import javafx.animation.AnimationTimer;
@@ -104,5 +105,6 @@ public class GameController {
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         entities.forEach(e -> e.render(gc));
+        if (DEBUG_MODE) entities.forEach(e -> e.renderDebug(gc));
     }
 }

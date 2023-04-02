@@ -7,4 +7,5 @@ public final class Constants {
     public static final double SCENE_HEIGHT = 800;
     public static final double BLOCK_SIZE = 32;
     public static final double FLOOR_HEIGHT = SCENE_HEIGHT - BLOCK_SIZE * 2.5;
+    public static final boolean DEBUG_MODE = true;
 }

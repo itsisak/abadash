@@ -4,6 +4,8 @@ import Abadash.Controllers.GameController;
 import Abadash.Hitbox;
 import Abadash.ImageGallery;
 import Abadash.Sprite;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -43,5 +45,15 @@ public abstract class Entity {
 
     public void render(GraphicsContext gc) {
         sprite.render(gc, x, y);
+    }
+
+    public void renderDebug(GraphicsContext gc) {
+        gc.save();
+        // Render hitboxes
+        gc.setStroke(Color.RED);
+        for (Rectangle2D rectangle : hitbox.getRectangles()) {
+            gc.strokeRect(x + rectangle.getMinX(), y + rectangle.getMinY(), rectangle.getWidth(), rectangle.getHeight());
+        }
+        gc.restore();
     }
 }
