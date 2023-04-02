@@ -1,9 +1,6 @@
 package Abadash.Controllers;
 
-import Abadash.Entities.Block;
-import Abadash.Entities.Entity;
-import Abadash.Entities.Player;
-import Abadash.Entities.Floor;
+import Abadash.Entities.*;
 import Abadash.Map;
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -82,9 +79,6 @@ public class GameController {
         if (inputManager.isPressed(KeyCode.SPACE)) {
             player.jump();
         }
-        if (inputManager.isClicked(KeyCode.R)) {
-            restart();
-        }
         for (Entity entity : entities) {
             if (entity != player) {
                 entity.setX(entity.getX() - VELOCITY_X * deltaTime);
@@ -93,6 +87,9 @@ public class GameController {
                 }
             }
             entity.update(deltaTime);
+        }
+        if (inputManager.isClicked(KeyCode.R) || player.isDead()) {
+            restart();
         }
     }
 

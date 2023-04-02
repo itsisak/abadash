@@ -16,6 +16,7 @@ import static Abadash.Constants.*;
 public class Player extends Entity {
     private double velocityY;
     private boolean onGround = false;
+    private boolean dead = false;
     public Player(double x, double y) {
         this.x = x + SCENE_WIDTH / 2;
         this.y = y + FLOOR_HEIGHT;
@@ -40,6 +41,10 @@ public class Player extends Entity {
         onGround = false;
     }
 
+    public void kill() {
+        dead = true;
+    }
+
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;
     }
@@ -48,5 +53,8 @@ public class Player extends Entity {
     }
     public boolean isOnGround() {
         return onGround;
+    }
+    public boolean isDead() {
+        return dead;
     }
 }
