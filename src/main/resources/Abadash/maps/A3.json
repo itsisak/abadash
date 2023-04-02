@@ -22,11 +22,23 @@
       "height": 1
     },
     {
+      "type": "spike",
+      "x": 38,
+      "y": 3,
+      "amount": 1
+    },
+    {
       "type": "block",
       "x": 40,
       "y": 0,
       "width": 3,
       "height": 1
+    },
+    {
+      "type": "spike",
+      "x": 40,
+      "y": 1,
+      "amount": 1
     },
     {
       "type": "block",
@@ -69,6 +81,18 @@
       "y": 6,
       "width": 2,
       "height": 2
+    },
+    {
+      "type": "spike",
+      "x": 62,
+      "y": 15,
+      "amount": 2
+    },
+    {
+      "type": "spike",
+      "x": 62,
+      "y": 0,
+      "amount": 2
     }
   ]
 }

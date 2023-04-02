@@ -1,9 +1,6 @@
 package Abadash;
 
-import Abadash.Entities.Block;
-import Abadash.Entities.Entity;
-import Abadash.Entities.Floor;
-import Abadash.Entities.Player;
+import Abadash.Entities.*;
 
 import javafx.scene.canvas.GraphicsContext;
 
@@ -32,6 +29,9 @@ public class Map {
             switch (entityInfo.getString("type")) {
                 case "block":
                     entities.add(new Block(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("width"), entityInfo.getInt("height")));
+                    break;
+                case "spike":
+                    entities.add(new Spike(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount")));
                     break;
             }
         }
