@@ -84,7 +84,7 @@ public class GameController {
             if (entity != player) {
                 entity.setX(entity.getX() - VELOCITY_X * deltaTime);
                 if (entity.collidesWith(player)) {
-                    entity.handleHitPlayer(player);
+                    entity.handleHitPlayer(player, deltaTime);
                 }
             }
             entity.update(deltaTime);

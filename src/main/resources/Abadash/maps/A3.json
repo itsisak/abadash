@@ -1,6 +1,18 @@
 {
   "entities": [
     {
+      "type": "jumpPad",
+      "x": 4,
+      "y": 0,
+      "amount": 8
+    },
+    {
+      "type": "jumpPad",
+      "x": 28,
+      "y": 0,
+      "amount": 1
+    },
+    {
       "type": "block",
       "x": 30,
       "y": 0,
@@ -34,6 +46,12 @@
       "y": 2,
       "width": 3,
       "height": 1
+    },
+    {
+      "type": "jumpPad",
+      "x": 36,
+      "y": 3,
+      "amount": 2
     },
     {
       "type": "spike",
