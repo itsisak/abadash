@@ -10,7 +10,13 @@ import java.util.HashMap;
 
 public class InputManager {
     // private Set<KeyCode> pressedKeys;
-    private Map<KeyCode, Integer> clickedState;
+    enum state {
+        RELEASED,
+        CLICKED,
+        HELD
+    }
+
+    private Map<KeyCode, state> clickedState;
 
     public InputManager() {
         // pressedKeys = new HashSet<>();
@@ -18,13 +24,13 @@ public class InputManager {
     }
 
     public boolean isPressed(KeyCode keyCode) {
-        return clickedState.containsKey(keyCode) && clickedState.get(keyCode) != 0;
+        return clickedState.containsKey(keyCode) && clickedState.get(keyCode) != state.RELEASED;
         // return pressedKeys.contains(keyCode);
     }
 
     public boolean isClicked(KeyCode keyCode) {
-        if (clickedState.containsKey(keyCode) && clickedState.get(keyCode) == 1) {
-            clickedState.put(keyCode, 2);   
+        if (clickedState.containsKey(keyCode) && clickedState.get(keyCode) == state.CLICKED) {
+            clickedState.put(keyCode, state.HELD);   
             return true;
         }
         return false;
@@ -34,13 +40,13 @@ public class InputManager {
         KeyCode keyCode = keyEvent.getCode();
         // pressedKeys.add(keyCode);
 
-        if (!clickedState.containsKey(keyCode) || clickedState.get(keyCode) == 0) {
-            clickedState.put(keyCode, 1);
+        if (!clickedState.containsKey(keyCode) || clickedState.get(keyCode) == state.RELEASED) {
+            clickedState.put(keyCode, state.CLICKED);
         } 
     }
 
     public void handleKeyRelease(KeyEvent keyEvent) {
         // pressedKeys.remove(keyEvent.getCode());
-        clickedState.put(keyEvent.getCode(), 0);
+        clickedState.put(keyEvent.getCode(), state.RELEASED);
     }
 }
