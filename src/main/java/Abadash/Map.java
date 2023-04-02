@@ -31,7 +31,7 @@ public class Map {
                     entities.add(new Block(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("width"), entityInfo.getInt("height")));
                     break;
                 case "spike":
-                    entities.add(new Spike(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount")));
+                    entities.add(new Spike(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount"), Spike.Direction.valueOf(entityInfo.getString("direction"))));;
                     break;
             }
         }
