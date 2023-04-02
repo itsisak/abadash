@@ -17,7 +17,7 @@ import static Abadash.Constants.*;
 
 public class Block extends Entity {
     protected int width, height;
-    public Block(double x, double y, int width, int height) {
+    public Block(int x, int y, int width, int height) {
         this.x = x * BLOCK_SIZE;
         this.y = FLOOR_HEIGHT - (y + 1) * BLOCK_SIZE;
         this.width = width;
@@ -28,7 +28,7 @@ public class Block extends Entity {
     }
 
     @Override
-    public void handleHitPlayer(Player player) {
+    public void handleHitPlayer(Player player, double deltaTime) {
         player.setVelocityY(0.0);
         player.setY(getY() - player.hitbox.getHeight());
         player.setOnGround(true);

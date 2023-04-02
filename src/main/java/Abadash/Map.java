@@ -33,6 +33,8 @@ public class Map {
                 case "spike":
                     entities.add(new Spike(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount"), Spike.Direction.valueOf(entityInfo.getString("direction"))));;
                     break;
+                case "jumpPad":
+                    entities.add(new JumpPad(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount")));
             }
         }
         entities.add(new Floor());

@@ -35,7 +35,7 @@ public abstract class Entity {
         return this.hitbox.intersects(other.getX() - getX(), other.getY() - getY(), other.hitbox);
     }
 
-    public void handleHitPlayer(Player player) {
+    public void handleHitPlayer(Player player, double deltaTime) {
 
     }
 

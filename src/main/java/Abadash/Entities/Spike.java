@@ -56,7 +56,7 @@ public class Spike extends Entity {
     }
 
     @Override
-    public void handleHitPlayer(Player player) {
+    public void handleHitPlayer(Player player, double deltaTime) {
         player.kill();
     }
 
