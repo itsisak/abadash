@@ -2,6 +2,7 @@ package Abadash.Entities;
 
 import Abadash.Hitbox;
 import Abadash.ImageGallery;
+import Abadash.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -19,8 +20,6 @@ public class Spike extends Entity {
         this.y = FLOOR_HEIGHT - (y + 1) * BLOCK_SIZE;
 
         this.amount = amount;
-        width = amount * BLOCK_SIZE;
-        height = BLOCK_SIZE;
 
         List<Rectangle2D> hitboxRectangles = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
@@ -29,7 +28,7 @@ public class Spike extends Entity {
         }
         hitbox = new Hitbox(hitboxRectangles);
 
-        sprite = ImageGallery.getInstance().load("Abadash/sprites/spike.png");
+        sprite = new Sprite("Abadash/sprites/spike.png");
     }
 
     @Override
@@ -40,7 +39,7 @@ public class Spike extends Entity {
     @Override
     public void render(GraphicsContext gc) {
         for (int i = 0; i < amount; i++) {
-            gc.drawImage(sprite, x + i * BLOCK_SIZE, y, BLOCK_SIZE, BLOCK_SIZE);
+            sprite.render(gc, x + i * BLOCK_SIZE, y);
         }
     }
 }
