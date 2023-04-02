@@ -150,6 +150,17 @@
       "y": 0,
       "amount": 2,
       "direction": "UP"
+    },
+    {
+      "type": "goal",
+      "x": 70
+    },
+    {
+      "type": "block",
+      "x": 71,
+      "y": 10,
+      "width": 1,
+      "height": 11
     }
   ]
 }

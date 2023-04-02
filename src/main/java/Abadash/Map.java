@@ -35,6 +35,10 @@ public class Map {
                     break;
                 case "jumpPad":
                     entities.add(new JumpPad(entityInfo.getInt("x"), entityInfo.getInt("y"), entityInfo.getInt("amount")));
+                    break;
+                case "goal":
+                    entities.add(new Goal(entityInfo.getInt("x")));
+                    break;
             }
         }
         entities.add(new Floor());
