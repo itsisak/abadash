@@ -12,10 +12,8 @@ import static Abadash.Constants.*;
 
 public class ViewController {
 
-    @FXML
-    private AnchorPane rootPane;
-    @FXML
-    private StackPane contentPane;
+    @FXML private AnchorPane rootPane;
+    @FXML private StackPane contentPane;
     private Pane menuPane;
     private Pane gamePane;
     private final MenuController menuController = new MenuController(this);
@@ -45,7 +43,7 @@ public class ViewController {
         switch (contentName) {
             case "Menu":
                 contentPane.getChildren().setAll(menuPane);
-                // menuPane.requestFocus();
+                menuPane.requestFocus();
                 gameController.stopGame();
                 break;
             case "Game":

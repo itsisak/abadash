@@ -7,6 +7,7 @@ import java.util.List;
 public class Hitbox {
     private final List<Rectangle2D> rectangles;
     private final double minx, miny, maxx, maxy;
+    
     public Hitbox(List<Rectangle2D> rectangles) {
         this.rectangles = rectangles;
 
@@ -28,6 +29,16 @@ public class Hitbox {
         this.miny = miny;
         this.maxx = maxx;
         this.maxy = maxy;
+    }
+
+    public boolean intersects(double offsetX, double offsetY, Hitbox other) {
+        for (Rectangle2D rectangle : rectangles) {
+            for (Rectangle2D otherRectangle : other.getRectangles()) {
+                if(rectangle.intersects(otherRectangle.getMinX() + offsetX, otherRectangle.getMinY() + offsetY, otherRectangle.getWidth(), otherRectangle.getHeight()))
+                    return true;
+            }
+        }
+        return false;
     }
 
     public double getMinX() {
@@ -56,15 +67,5 @@ public class Hitbox {
 
     public List<Rectangle2D> getRectangles() {
         return rectangles;
-    }
-
-    public boolean intersects(double offsetX, double offsetY, Hitbox other) {
-        for (Rectangle2D rectangle : rectangles) {
-            for (Rectangle2D otherRectangle : other.getRectangles()) {
-                if(rectangle.intersects(otherRectangle.getMinX() + offsetX, otherRectangle.getMinY() + offsetY, otherRectangle.getWidth(), otherRectangle.getHeight()))
-                    return true;
-            }
-        }
-        return false;
     }
 }

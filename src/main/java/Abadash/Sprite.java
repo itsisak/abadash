@@ -8,9 +8,11 @@ import static Abadash.Constants.*;
 
 public class Sprite {
     private Image img;
-    private double width = BLOCK_SIZE, height = BLOCK_SIZE;
+    private double width = BLOCK_SIZE;
+    private double height = BLOCK_SIZE;
     private double angle = 0;
     private boolean dynamicOpacity = true;
+
     public Sprite(String imagePath) {
         img = ImageGallery.getInstance().load(imagePath);
     }
@@ -20,26 +22,6 @@ public class Sprite {
         setWidth(width);
         setHeight(height);
     }
-
-    public double getAngle() {
-        return angle;
-    }
-    public void setAngle(double angle) {
-        this.angle = angle;
-    }
-    public double getWidth() {
-        return width;
-    }
-    public void setWidth(double width) {
-        this.width = width;
-    }
-    public double getHeight() {
-        return height;
-    }
-    public void setHeight(double height) {
-        this.height = height;
-    }
-    public void setDynamicOpacity(boolean dynamicOpacity) { this.dynamicOpacity = dynamicOpacity; }
 
     public void render(GraphicsContext gc, double x, double y) {
         gc.save();
@@ -62,5 +44,27 @@ public class Sprite {
         }
 
         return 1;
+    }
+
+    public double getAngle() {
+        return angle;
+    }
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+    public double getWidth() {
+        return width;
+    }
+    public void setWidth(double width) {
+        this.width = width;
+    }
+    public double getHeight() {
+        return height;
+    }
+    public void setHeight(double height) {
+        this.height = height;
+    }
+    public void setDynamicOpacity(boolean dynamicOpacity) { 
+        this.dynamicOpacity = dynamicOpacity; 
     }
 }

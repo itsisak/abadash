@@ -5,13 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 import static Abadash.Constants.SCENE_WIDTH;
+import static Abadash.Constants.SCENE_HEIGHT;
 
 public class MenuController {
 
-    @FXML
-    private Button startBtn;
-    @FXML
-    private GridPane titleContainer;
+    @FXML private GridPane titleContainer;
+    @FXML private Button startGameBtn;
     private ViewController viewController;
 
     public MenuController(ViewController viewController) {
@@ -20,7 +19,9 @@ public class MenuController {
 
     public void initialize() {
         titleContainer.setPrefWidth(SCENE_WIDTH);
-        startBtn.setOnAction(event -> viewController.changeView("Game"));
+        startGameBtn.setOnAction(event -> viewController.changeView("Game"));
+        startGameBtn.setLayoutX((SCENE_WIDTH - startGameBtn.getPrefWidth()) / 2);
+        startGameBtn.setLayoutY((SCENE_HEIGHT - startGameBtn.getPrefHeight()) / 2);
     }
 
 }

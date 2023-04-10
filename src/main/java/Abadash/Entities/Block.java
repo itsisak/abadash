@@ -1,17 +1,12 @@
 package Abadash.Entities;
 
-import Abadash.Hitbox;
-import Abadash.ImageGallery;
-import Abadash.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
+
+import Abadash.Hitbox;
+import Abadash.Sprite;
 
 import static Abadash.Constants.*;
 
