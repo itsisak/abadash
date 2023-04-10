@@ -16,6 +16,14 @@ import java.util.List;
 
 import Abadash.Entities.*;
 import Abadash.Map;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static Abadash.Constants.*;
 
 public class GameController {
@@ -85,6 +93,13 @@ public class GameController {
 
     public void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        
+        // Background
+        Stop[] stops = new Stop[] { new Stop(0, new Color(0, 0.2, 0.2, 1)), new Stop(1, new Color(0, 0.8, 0.8, 1))};
+        LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
+        gc.setFill(lg1);
+        gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        
         entities.forEach(e -> e.render(gc));
         if (DEBUG_MODE)
             entities.forEach(e -> e.renderDebug(gc));

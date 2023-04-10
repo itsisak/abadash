@@ -27,7 +27,7 @@ public class JumpPad extends Entity {
     @Override
     public void handleHitPlayer(Player player, double deltaTime) {
         player.setOnGround(true);
-        player.jump(800); 
+        player.jump(1500);
         player.update(deltaTime);
     }
 
