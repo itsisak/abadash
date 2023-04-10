@@ -1,16 +1,11 @@
 package Abadash.Entities;
 
-import Abadash.Controllers.GameController;
-import Abadash.Hitbox;
-import Abadash.ImageGallery;
-import Abadash.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Shape;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-import static Abadash.Constants.*;
+import Abadash.Hitbox;
+import Abadash.Sprite;
 
 public abstract class Entity {
     protected Sprite sprite = new Sprite("Abadash/icons/default.png");
@@ -34,15 +29,7 @@ public abstract class Entity {
     public boolean collidesWith(Entity other) {
         return this.hitbox.intersects(other.getX() - getX(), other.getY() - getY(), other.hitbox);
     }
-
-    public void handleHitPlayer(Player player, double deltaTime) {
-
-    }
-
-    public void update(double deltaTime) {
-
-    }
-
+    
     public void render(GraphicsContext gc) {
         sprite.render(gc, x, y);
     }
@@ -56,4 +43,7 @@ public abstract class Entity {
         }
         gc.restore();
     }
+
+    public void handleHitPlayer(Player player, double deltaTime) {}
+    public void update(double deltaTime) {}
 }

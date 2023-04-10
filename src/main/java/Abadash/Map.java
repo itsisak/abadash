@@ -1,16 +1,13 @@
 package Abadash;
 
-import Abadash.Entities.*;
-
-import javafx.scene.canvas.GraphicsContext;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import Abadash.Entities.*;
 
 public class Map {
     private List<Entity> entities = new ArrayList<>();

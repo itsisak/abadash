@@ -1,22 +1,16 @@
 package Abadash.Entities;
 
-
-import Abadash.Hitbox;
-import Abadash.ImageGallery;
-import Abadash.Sprite;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
-import java.net.URL;
 import java.util.List;
 
+import Abadash.Hitbox;
+import Abadash.Sprite;
 import static Abadash.Constants.*;
 
 public class Player extends Entity {
     private double velocityY;
-    private boolean onGround = true;
+    private boolean onGround;
     private boolean dead = false;
     public Player(double x, double y) {
         this.x = x + SCENE_WIDTH / 4;
@@ -40,10 +34,8 @@ public class Player extends Entity {
     }
 
     public void jump(double velocityY) {
-        if (onGround) {
+        if (onGround)
             this.velocityY = -velocityY;
-        }
-        onGround = false;
     }
 
     public void kill() {

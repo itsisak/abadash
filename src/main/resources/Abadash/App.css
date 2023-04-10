@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&display=swap');
 
-
-
-#pauseBtn {
-    -fx-background-color: none;
-    -fx-graphic: url("icons/pause.png");
-}
-
 .root {
-    /* -fx-background: none; */
     -fx-background-image: none;
     -fx-background-color: rgb(19, 92, 196);
 }

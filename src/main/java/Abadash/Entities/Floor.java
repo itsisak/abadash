@@ -1,14 +1,12 @@
 package Abadash.Entities;
 
-
-import Abadash.Hitbox;
-import Abadash.Sprite;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 import java.util.List;
 
+import Abadash.Hitbox;
+import Abadash.Sprite;
 import static Abadash.Constants.*;
 
 public class Floor extends Entity {
@@ -27,6 +25,7 @@ public class Floor extends Entity {
     public void handleHitPlayer(Player player, double deltaTime) {
         player.y = FLOOR_HEIGHT - player.hitbox.getHeight();
         player.setOnGround(true);
+        player.setVelocityY(0);
     }
 
     @Override
