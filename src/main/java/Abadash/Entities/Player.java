@@ -19,10 +19,10 @@ public class Player extends Entity {
     private boolean onGround;
     private boolean dead = false;
     public Player(double x, double y) {
-        this.x = x + SCENE_WIDTH / 2;
+        this.x = x + SCENE_WIDTH / 4;
         this.y = y + FLOOR_HEIGHT;
 
-        this.sprite = new Sprite("Abadash/sprites/player.png");
+        this.sprite = new Sprite("Abadash/sprites/webkom.png");
         this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, BLOCK_SIZE, BLOCK_SIZE)));
     }
 
@@ -31,13 +31,15 @@ public class Player extends Entity {
         velocityY += GRAVITY_CONSTANT * deltaTime;
         y += velocityY * deltaTime;
         onGround = false;
+
+        sprite.setAngle(sprite.getAngle() + VELOCITY_X/2 * deltaTime);
     }
 
     public void jump() {
-        jump(400);
+        jump(JUMP_FORCE);
     }
 
-    public void jump(int velocityY) {
+    public void jump(double velocityY) {
         if (onGround) {
             this.velocityY = -velocityY;
         }

@@ -32,20 +32,20 @@ public class Spike extends Entity {
         for (int i = 0; i < amount; i++) {
             switch(direction) {
                 case UP:
-                    hitboxRectangles.add(new Rectangle2D(3 + i*BLOCK_SIZE, 18, 26, 14));
-                    hitboxRectangles.add(new Rectangle2D(10 + i*BLOCK_SIZE, 6, 12, 25));
+                    hitboxRectangles.add(new Rectangle2D((3/32.0 + i)*BLOCK_SIZE, 18/32.0*BLOCK_SIZE, 26/32.0*BLOCK_SIZE, 14/32.0*BLOCK_SIZE));
+                    hitboxRectangles.add(new Rectangle2D((10/32.0 + i)*BLOCK_SIZE, 6/32.0*BLOCK_SIZE, 12/32.0*BLOCK_SIZE, 25/32.0*BLOCK_SIZE));
                     break;
                 case RIGHT:
-                    hitboxRectangles.add(new Rectangle2D(0, 3 + i*BLOCK_SIZE, 14, 26));
-                    hitboxRectangles.add(new Rectangle2D(0, 10 + i*BLOCK_SIZE, 25, 12));
+                    hitboxRectangles.add(new Rectangle2D(0, (3/32.0 + i)*BLOCK_SIZE, 14/32.0*BLOCK_SIZE, 26/32.0*BLOCK_SIZE));
+                    hitboxRectangles.add(new Rectangle2D(0, (10/32.0 + i)*BLOCK_SIZE, 25/32.0*BLOCK_SIZE, 12/32.0*BLOCK_SIZE));
                     break;
                 case DOWN:
-                    hitboxRectangles.add(new Rectangle2D(3 + i*BLOCK_SIZE, 0, 26, 14));
-                    hitboxRectangles.add(new Rectangle2D(10 + i*BLOCK_SIZE, 0, 12, 25));
+                    hitboxRectangles.add(new Rectangle2D((3/32.0 + i)*BLOCK_SIZE, 0/32.0*BLOCK_SIZE, 26/32.0*BLOCK_SIZE, 14/32.0*BLOCK_SIZE));
+                    hitboxRectangles.add(new Rectangle2D((10/32.0 + i)*BLOCK_SIZE, 0/32.0*BLOCK_SIZE, 12/32.0*BLOCK_SIZE, 25/32.0*BLOCK_SIZE));
                     break;
                 case LEFT:
-                    hitboxRectangles.add(new Rectangle2D(18, 3 + i*BLOCK_SIZE, 14, 26));
-                    hitboxRectangles.add(new Rectangle2D(6, 10 + i*BLOCK_SIZE, 25, 12));
+                    hitboxRectangles.add(new Rectangle2D(18/32.0*BLOCK_SIZE, (3/32.0 + i)*BLOCK_SIZE, 14/32.0*BLOCK_SIZE, 26/32.0*BLOCK_SIZE));
+                    hitboxRectangles.add(new Rectangle2D(6/32.0*BLOCK_SIZE, (10/32.0 + i)*BLOCK_SIZE, 25/32.0*BLOCK_SIZE, 12/32.0*BLOCK_SIZE));
                     break;
             }
         }
