@@ -6,14 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            onKeyPressed="#handleKeyPress"
-            onKeyReleased="#handleKeyRelease"
-            fx:controller="Abadash.Controllers.GameController"
-            prefHeight="${HEIGHT}" prefWidth="${WIDTH}">
-    <children>
-        <Canvas fx:id="canvas" height="${HEIGHT}" width="${WIDTH}"/>
-    </children>
-</AnchorPane>
+<Pane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:id="gamePane"
+      stylesheets="@App.css"
+      prefWidth="20" prefHeight="20">
+    <Canvas fx:id="canvas" width="20" height="20"/>
+    <Text fx:id="attemptText" text="Attempt: " layoutY="50" layoutX="20">
+      <font>
+        <Font size="50" />
+      </font>
+    </Text>
+    <Button fx:id="menuBtn" text="Go to menu" layoutY="20"/>
+</Pane>

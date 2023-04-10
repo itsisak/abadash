@@ -1,9 +1,22 @@
-.root {
-    -fx-background-image: url("maps/blueBackground.jpg");
-}
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&display=swap');
+
 
 
 #pauseBtn {
     -fx-background-color: none;
     -fx-graphic: url("icons/pause.png");
+}
+
+.root {
+    /* -fx-background: none; */
+    -fx-background-image: none;
+    -fx-background-color: rgb(19, 92, 196);
+}
+
+#title {
+    -fx-font-weight: bold;
+    -fx-font-family: "Changa One", cursive;
+    -fx-fill: white;
+    -fx-stroke: rgb(0, 32, 16);
+    -fx-stroke-width: 2px;
 }

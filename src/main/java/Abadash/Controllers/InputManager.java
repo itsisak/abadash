@@ -49,4 +49,8 @@ public class InputManager {
         // pressedKeys.remove(keyEvent.getCode());
         clickedState.put(keyEvent.getCode(), state.RELEASED);
     }
+
+    public Map<KeyCode, state> getClickedState() {
+        return clickedState;
+    }
 }

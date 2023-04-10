@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import Abadash.Controllers.*;
 import static Abadash.Constants.SCENE_WIDTH;
 import static Abadash.Constants.SCENE_HEIGHT;
 
@@ -20,17 +21,15 @@ public class AbadashApp extends Application {
         primaryStage.setTitle("AbaDash");
         primaryStage.setResizable(false);
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.getNamespace().put("WIDTH", SCENE_WIDTH);
-        loader.getNamespace().put("HEIGHT", SCENE_HEIGHT);
-        loader.setLocation(getClass().getResource("Game.fxml"));
-
-        Scene gameScene = new Scene(loader.load());
-        gameScene.getRoot().requestFocus();
-        primaryStage.setScene(gameScene);
-
-        gameScene.getStylesheets().addAll(this.getClass().getResource("App.css").toExternalForm());
-
+        FXMLLoader appLoader = new FXMLLoader(getClass().getResource("/Abadash/App.fxml"));
+        // ViewController viewController = new ViewController();
+        // appLoader.setController(viewController);
+        
+        Scene scene = new Scene(appLoader.load(), SCENE_WIDTH, SCENE_HEIGHT);
+        scene.getRoot().requestFocus();
+        
+        primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 }
