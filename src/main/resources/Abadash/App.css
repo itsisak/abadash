@@ -4,13 +4,8 @@
     /* -fx-background-image: url("icons/background8.gif");
     -fx-background-repeat: none;
     -fx-background-size: cover; */
-    /* -fx-background-color: rgb(19, 92, 196); */
     /* -fx-background-color: linear-gradient(to bottom, rgb(0, 51, 51), rgb(0, 204, 204)); */
     -fx-background-color: transparent;
-}
-
-#stageContainer {
-    /* -fx-background-color: rgb(19, 92, 196); */
 }
 
 .stageTitle, #title, #attemptText {

@@ -37,9 +37,8 @@ public class MenuController {
                 default -> {}
             }
         });
+        
         titleContainer.setPrefWidth(SCENE_WIDTH);
-        // playBtn.setEffect(new ColorAdjust(1, 1, 1, 1));
-        // playBtn.setEffect(new ColorAdjust(0, 1, 0.8, 0));
         playBtn.setLayoutX((SCENE_WIDTH - playBtn.getFitWidth()) / 2);
         playBtn.setLayoutY((SCENE_HEIGHT - playBtn.getFitHeight()) / 2 + 50);
         githubBtn.setLayoutY(SCENE_HEIGHT - githubBtn.getFitHeight() - 20);
@@ -56,7 +55,6 @@ public class MenuController {
                 e.printStackTrace();
             }
         });
-
     }
 
     

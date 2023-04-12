@@ -52,8 +52,6 @@ public class GameController {
         canvas.setHeight(SCENE_HEIGHT);
         menuBtn.setLayoutX(SCENE_WIDTH - menuBtn.getFitWidth() - 20);
         attemptTextBox.setPrefWidth(SCENE_WIDTH);
-        attemptText.setTextAlignment(TextAlignment.CENTER);
-        // attemptText.setLayoutX();
 
         // Event handling
         menuBtn.setOnMouseClicked(event -> viewController.changeView("Menu"));
