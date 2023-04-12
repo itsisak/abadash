@@ -11,6 +11,7 @@ import Abadash.Entities.*;
 
 public class Map {
     private List<Entity> entities = new ArrayList<>();
+    private double goalPos;
 
     public Map(String map) {
         String mapStr = new String();
@@ -36,6 +37,7 @@ public class Map {
                     break;
                 case "goal":
                     entities.add(new Goal(entityInfo.getInt("x")));
+                    goalPos = entityInfo.getInt("x");
                     break;
             }
         }
@@ -44,6 +46,10 @@ public class Map {
 
     public List<Entity> getEntities() {
         return entities;
+    }
+
+    public double getGoalPos() {
+        return goalPos;
     }
 
 }

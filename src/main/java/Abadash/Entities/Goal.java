@@ -7,6 +7,7 @@ import java.util.List;
 
 import Abadash.Sprite;
 import Abadash.Hitbox;
+import Abadash.Controllers.GameController;
 import static Abadash.Constants.FLOOR_HEIGHT;
 import static Abadash.Constants.BLOCK_SIZE;
 public class Goal extends Entity {
@@ -20,7 +21,7 @@ public class Goal extends Entity {
     @Override
     public void handleHitPlayer(Player player, double deltaTime) {
         player.kill();
-        System.out.println("YOU WON");
+        GameController.setHasWon(true);
     }
 
     @Override
