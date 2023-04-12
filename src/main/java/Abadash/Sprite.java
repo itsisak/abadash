@@ -10,6 +10,7 @@ public class Sprite {
     private Image img;
     private double width = BLOCK_SIZE, height = BLOCK_SIZE;
     private double angle = 0;
+    private double opacity = 1;
     private boolean dynamicOpacity = true;
     public Sprite(String imagePath) {
         img = ImageGallery.getInstance().load(imagePath);
@@ -19,6 +20,15 @@ public class Sprite {
         this(imagePath);
         setWidth(width);
         setHeight(height);
+    }
+
+    public Sprite(Sprite sprite) {
+        this.img = sprite.img;
+        this.width = sprite.getWidth();
+        this.height = sprite.getHeight();
+        this.opacity = sprite.getOpacity();
+        this.dynamicOpacity = sprite.getDynamicOpacity();
+        this.angle = sprite.getAngle();
     }
 
     public double getAngle() {
@@ -39,14 +49,23 @@ public class Sprite {
     public void setHeight(double height) {
         this.height = height;
     }
-    public void setDynamicOpacity(boolean dynamicOpacity) { this.dynamicOpacity = dynamicOpacity; }
+    public double getOpacity() {
+        return opacity;
+    }
+    public void setOpacity(double opacity) { this.opacity = opacity; }
+    public boolean getDynamicOpacity() {
+        return dynamicOpacity;
+    }
+    public void setDynamicOpacity(boolean dynamicOpacity) {
+        this.dynamicOpacity = dynamicOpacity;
+    }
 
     public void render(GraphicsContext gc, double x, double y) {
         gc.save();
         Rotate r = new Rotate(angle, x + width / 2, y + height / 2);
-        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+        gc.transform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
 
-       if (dynamicOpacity) gc.setGlobalAlpha(calculateOpacity(x));
+       gc.setGlobalAlpha((dynamicOpacity ? calculateOpacity(x) : 1) * opacity);
         gc.drawImage(img, x, y, width, height);
         gc.restore();
     }

@@ -27,6 +27,7 @@ public class Floor extends Entity {
     public void handleHitPlayer(Player player, double deltaTime) {
         player.y = FLOOR_HEIGHT - player.hitbox.getHeight();
         player.setOnGround(true);
+        player.setVelocityY(0);
     }
 
     @Override
