@@ -14,7 +14,8 @@ public class Map {
 
     public Map(String map) {
         String mapStr = new String();
-        Path filePath = Path.of("src/main/resources/Abadash/maps/" + map);
+        // System.out.println(map);
+        Path filePath = Path.of("src/main/resources/Abadash/maps/" + map + ".json");
         try {
             mapStr = Files.readString(filePath);
         } catch (Exception e) {

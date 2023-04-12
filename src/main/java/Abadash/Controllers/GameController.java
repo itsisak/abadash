@@ -1,11 +1,14 @@
 package Abadash.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
@@ -23,7 +26,8 @@ import static Abadash.Constants.*;
 public class GameController {
     @FXML private Pane gamePane;
     @FXML private Canvas canvas;
-    @FXML private Button menuBtn;
+    @FXML private ImageView menuBtn;
+    @FXML private HBox attemptTextBox;
     @FXML private Text attemptText;
 
     private ViewController viewController;
@@ -32,22 +36,25 @@ public class GameController {
     private Player player;
     private List<Entity> entities;
     private int attempts;
+    private String whichMap = "A3"; 
 
-    public GameController(ViewController viewController) {
+    protected GameController(ViewController viewController) {
         this.viewController = viewController;
     }
 
     public void initialize() {
         inputManager = new InputManager();
 
+        gamePane.getStyleClass().add(whichMap);
+
         // Setting variables defined in Constants
         canvas.setWidth(SCENE_WIDTH);
         canvas.setHeight(SCENE_HEIGHT);
-        menuBtn.setPrefWidth(150);
-        menuBtn.setLayoutX(SCENE_WIDTH - menuBtn.getPrefWidth() - 20);
+        menuBtn.setLayoutX(SCENE_WIDTH - menuBtn.getFitWidth() - 20);
+        attemptTextBox.setPrefWidth(SCENE_WIDTH);
 
         // Event handling
-        menuBtn.setOnAction(event -> viewController.changeView("Menu"));
+        menuBtn.setOnMouseClicked(event -> viewController.changeView("Menu"));
         gamePane.setOnKeyPressed(event -> inputManager.handleKeyPress(event));
         gamePane.setOnKeyReleased(event -> inputManager.handleKeyRelease(event));
 
@@ -67,8 +74,11 @@ public class GameController {
         loadEntities();
     }
     
-    public void update(double deltaTime) {
-        if (inputManager.isPressed(KeyCode.SPACE)) {
+    private void update(double deltaTime) {
+        if (inputManager.isPressed(KeyCode.ESCAPE)) {
+            viewController.changeView("Menu");
+        }
+        if (inputManager.isPressed(KeyCode.SPACE) || inputManager.isPressed(KeyCode.UP)) {
             player.jump();
         }
         player.setOnGround(true);
@@ -86,14 +96,14 @@ public class GameController {
         }
     }
 
-    public void render(GraphicsContext gc) {
+    private void render(GraphicsContext gc) {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        
+
         // Background
-        Stop[] stops = new Stop[] { new Stop(0, new Color(0, 0.2, 0.2, 1)), new Stop(1, new Color(0, 0.8, 0.8, 1))};
-        LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
-        gc.setFill(lg1);
-        gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        // Stop[] stops = new Stop[] { new Stop(0, new Color(0, 0.2, 0.2, 1)), new Stop(1, new Color(0, 0.8, 0.8, 1))};
+        // LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
+        // gc.setFill(lg1);
+        // gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
         
         entities.forEach(e -> e.render(gc));
         if (DEBUG_MODE)
@@ -103,7 +113,7 @@ public class GameController {
     private void loadEntities() {
         entities = new ArrayList<>();
         player = new Player(0, 10);
-        Map map = new Map("A3.json");
+        Map map = new Map(whichMap);
 
         entities.add(player);
         for (Entity e : map.getEntities()) {
@@ -111,19 +121,26 @@ public class GameController {
         }
     }
 
-    public void startGame() {
+    protected void startGame() {
         animationTimer.start();
         attempts = 0;
         player.kill();
+
+        gamePane.getStyleClass().clear();
+        gamePane.getStyleClass().add(whichMap);
     }
 
-    public void stopGame() {
+    protected void stopGame() {
         animationTimer.stop();
     }
 
-    public void restart() {
+    protected void restart() {
         attempts++;
-        attemptText.setText("Attempt: " + attempts);
+        attemptText.setText("ATTEMPT " + attempts);
         loadEntities();
+    }
+
+    protected void setWhichMap(String whichMap) {
+        this.whichMap = whichMap;
     }
 }

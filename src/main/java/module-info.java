@@ -4,4 +4,5 @@ open module TDT4100_project {
     requires javafx.fxml;
     requires javafx.graphics;
     requires org.json;
+    requires java.desktop;
 }
