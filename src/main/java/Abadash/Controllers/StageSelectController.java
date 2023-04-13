@@ -120,21 +120,15 @@ public class StageSelectController {
         title.setFont(new Font(75));
         title.getStyleClass().add("stageTitle");
 
-
-        // progressBar
-        // StackPane progressContainer = createProgressBar(titleStr);
-
         // playButton
         ImageView selectBtn = new ImageView(getClass().getResource("/Abadash/icons/play.png").toString());
         selectBtn.setFitWidth(50);
         selectBtn.setFitHeight(50);
         selectBtn.setOnMouseClicked(event -> viewController.changeView("Game"));
 
-
         // add all to page and add page to stageSelectContainer
         page.getChildren().addAll(title, createProgressBar(titleStr), selectBtn);
         stageContainer.getChildren().add(page);
-
 
         // create new pageIndicator circle
         Circle circle = new Circle(7.5);
