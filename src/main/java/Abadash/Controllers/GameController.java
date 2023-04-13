@@ -3,6 +3,7 @@ package Abadash.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Text;
@@ -42,6 +43,10 @@ public class GameController {
     @FXML private ImageView menuBtn;
     @FXML private HBox attemptTextBox;
     @FXML private Text attemptText;
+    @FXML private VBox debugBox;
+    @FXML private Text debugFramerate;
+    @FXML private Text debugVelocityY;
+    @FXML private Text debugProgress;
 
     private ViewController viewController;
     private InputManager inputManager;
@@ -63,6 +68,7 @@ public class GameController {
 
         whichMap = "A3";
         gamePane.getStyleClass().add(whichMap);
+        debugBox.setVisible(DEBUG_MODE);
 
         // Setting variables defined in Constants
         canvas.setWidth(SCENE_WIDTH);
@@ -81,7 +87,10 @@ public class GameController {
             public void handle(long currentTime) {
                 double deltaTime = (currentTime - lastFrameTime) / 1000000000.0;
                 lastFrameTime = currentTime;
-
+                
+                debugFramerate.setText("FPS: " + Math.round(1d / deltaTime));
+                debugVelocityY.setText("VelocityY: " + (Math.round(player.getVelocityY())));
+                debugProgress.setText("Progress: " + getProgressPercent() + "%");
                 update(deltaTime);
                 render(canvas.getGraphicsContext2D());
             }
@@ -141,10 +150,11 @@ public class GameController {
     }
 
     protected void startGame() {
+        AudioManager.getInstance().playAudio(whichMap);
         animationTimer.start();
         startTime = System.nanoTime();
         attempts = 0;
-        player.kill();
+        player.startKill();
 
         gamePane.getStyleClass().clear();
         gamePane.getStyleClass().add(whichMap);
@@ -156,9 +166,7 @@ public class GameController {
 
     protected void restart() {
         // save progress
-        double elapsedTime = (startTime - System.nanoTime()) / 1000000000.0;
-        double progress = -elapsedTime * VELOCITY_X + SCENE_WIDTH / 4;
-        int percent = (int) (progress / goalPos * 100);
+        int percent = getProgressPercent();
         if (percent >= 100) 
             percent = 99;
         if (hasWon)
@@ -177,6 +185,14 @@ public class GameController {
         attempts++;
         attemptText.setText("ATTEMPT " + attempts);
         loadEntities();
+        AudioManager.getInstance().restartAudio(whichMap);
+    }
+
+    private int getProgressPercent() {
+        double elapsedTime = (startTime - System.nanoTime()) / 1000000000.0;
+        double progress = -elapsedTime * VELOCITY_X + SCENE_WIDTH / 4;
+        int percent = (int) (progress / goalPos * 100);
+        return percent;
     }
 
     protected void setWhichMap(String whichMap) {

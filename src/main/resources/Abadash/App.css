@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&family=Chivo+Mono&family=Press+Start+2P&display=swap');
 
 .root {
     /* -fx-background-image: url("icons/background8.gif");
@@ -14,7 +14,7 @@
 }
 
 .stageTitle, .progressText, #title, #attemptText {
-    -fx-font-weight: bold;
+    /* -fx-font-weight: bold; */
     /* -fx-font-family: "Changa One", cursive; */
     -fx-font-family: 'Press Start 2P', cursive;
     -fx-fill: white;
@@ -48,4 +48,14 @@
 
 .Megalovania {
     -fx-background-color: linear-gradient(to bottom, rgb(51, 0, 0), rgb(204, 0, 0));
+}
+
+#debugBox * {
+    -fx-font-family: 'Chivo Mono', monospace;
+    -fx-font-size: 15;
+    -fx-fill: white;
+}
+
+#debugTitle {
+    -fx-font-size: 10;
 }
