@@ -1,23 +1,22 @@
 package Abadash;
 
-import Abadash.Entities.*;
-
-import javafx.scene.canvas.GraphicsContext;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import Abadash.Entities.*;
+
 public class Map {
     private List<Entity> entities = new ArrayList<>();
+    private double goalPos;
 
     public Map(String map) {
         String mapStr = new String();
-        Path filePath = Path.of("src/main/resources/Abadash/maps/" + map);
+        // System.out.println(map);
+        Path filePath = Path.of("src/main/resources/Abadash/maps/" + map + ".json");
         try {
             mapStr = Files.readString(filePath);
         } catch (Exception e) {
@@ -38,6 +37,7 @@ public class Map {
                     break;
                 case "goal":
                     entities.add(new Goal(entityInfo.getInt("x")));
+                    goalPos = entityInfo.getInt("x");
                     break;
             }
         }
@@ -46,6 +46,10 @@ public class Map {
 
     public List<Entity> getEntities() {
         return entities;
+    }
+
+    public double getGoalPos() {
+        return goalPos;
     }
 
 }

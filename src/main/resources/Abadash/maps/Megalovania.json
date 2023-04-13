@@ -1,0 +1,155 @@
+{
+    "entities": [
+      {
+        "type": "spike",
+        "x": 18,
+        "y": 0,
+        "amount": 1,
+        "direction": "UP"
+      },
+      {
+        "type": "spike",
+        "x": 26,
+        "y": 0,
+        "amount": 2,
+        "direction": "UP"
+      },
+      {
+        "type": "block",
+        "x": 34,
+        "y": 0,
+        "width": 6,
+        "height": 1
+      },
+      {
+        "type": "spike",
+        "x": 40,
+        "y": 0,
+        "amount": 2,
+        "direction": "UP"
+      },
+      {
+        "type": "block",
+        "x": 42,
+        "y": 0,
+        "width": 6,
+        "height": 1
+      },
+      {
+        "type": "spike",
+        "x": 48,
+        "y": 0,
+        "amount": 16,
+        "direction": "UP"
+      },
+      {
+        "type": "block",
+        "x": 52,
+        "y": 1,
+        "width": 1,
+        "height": 2
+      },
+      {
+        "type": "block",
+        "x": 56,
+        "y": 2,
+        "width": 1,
+        "height": 3
+      },
+      {
+        "type": "block",
+        "x": 60,
+        "y": 3,
+        "width": 1,
+        "height": 4
+      },
+      {
+        "type": "block",
+        "x": 68,
+        "y": 2,
+        "width": 4,
+        "height": 1
+      },
+      {
+        "type": "spike",
+        "x": 68,
+        "y": 1,
+        "amount": 4,
+        "direction": "DOWN"
+      },
+      {
+        "type": "spike",
+        "x": 74,
+        "y": 0,
+        "amount": 1,
+        "direction": "UP"
+      },
+      {
+        "type": "block",
+        "x": 78,
+        "y": 2,
+        "width": 1,
+        "height": 1
+      },
+      {
+        "type": "spike",
+        "x": 78,
+        "y": 1,
+        "amount": 1,
+        "direction": "DOWN"
+      },
+      {
+        "type": "spike",
+        "x": 82,
+        "y": 0,
+        "amount": 1,
+        "direction": "UP"
+      },
+      {
+        "type": "spike",
+        "x": 83,
+        "y": 0,
+        "amount": 16,
+        "direction": "UP"
+      },
+      {
+        "type": "block",
+        "x": 83,
+        "y": 0,
+        "width": 1,
+        "height": 1
+      },
+      {
+        "type": "block",
+        "x": 87,
+        "y": 1,
+        "width": 1,
+        "height": 2
+      },
+      {
+        "type": "block",
+        "x": 91,
+        "y": 2,
+        "width": 1 ,
+        "height": 3
+      },
+      {
+        "type": "block",
+        "x": 95,
+        "y": 3,
+        "width": 1 ,
+        "height": 4
+      },
+      {
+        "type": "block",
+        "x": 99,
+        "y": 4,
+        "width": 10,
+        "height": 5
+      },
+      {
+        "type": "goal",
+        "x": 120
+      }
+    ]
+  }

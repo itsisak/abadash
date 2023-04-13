@@ -1,14 +1,14 @@
 package Abadash.Entities;
 
-import static Abadash.Constants.BLOCK_SIZE;
-import static Abadash.Constants.FLOOR_HEIGHT;
-import Abadash.Hitbox;
-import Abadash.Sprite;
-
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.List;
+
+import Abadash.Hitbox;
+import Abadash.Sprite;
+import static Abadash.Constants.BLOCK_SIZE;
+import static Abadash.Constants.FLOOR_HEIGHT;
 
 public class JumpPad extends Entity {
     protected int amount;

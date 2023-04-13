@@ -1,13 +1,15 @@
 package Abadash;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-import Abadash.Controllers.*;
 import static Abadash.Constants.SCENE_WIDTH;
 import static Abadash.Constants.SCENE_HEIGHT;
 
@@ -18,18 +20,17 @@ public class AbadashApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("AbaDash");
-        primaryStage.setResizable(false);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Abadash/App.fxml"));
+        Scene scene = new Scene(loader.load(), SCENE_WIDTH, SCENE_HEIGHT);
 
-        FXMLLoader appLoader = new FXMLLoader(getClass().getResource("/Abadash/App.fxml"));
-        // ViewController viewController = new ViewController();
-        // appLoader.setController(viewController);
+        // for transparent app
+        // primaryStage.initStyle(StageStyle.TRANSPARENT);
+        // scene.setFill(Color.TRANSPARENT);
         
-        Scene scene = new Scene(appLoader.load(), SCENE_WIDTH, SCENE_HEIGHT);
-        scene.getRoot().requestFocus();
-        
+        primaryStage.setTitle("AbaDash");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/Abadash/sprites/abakule.png")));
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-
     }
 }

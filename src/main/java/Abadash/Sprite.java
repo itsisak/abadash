@@ -8,10 +8,12 @@ import static Abadash.Constants.*;
 
 public class Sprite {
     private Image img;
-    private double width = BLOCK_SIZE, height = BLOCK_SIZE;
+    private double width = BLOCK_SIZE;
+    private double height = BLOCK_SIZE;
     private double angle = 0;
     private double opacity = 1;
     private boolean dynamicOpacity = true;
+
     public Sprite(String imagePath) {
         img = ImageGallery.getInstance().load(imagePath);
     }
