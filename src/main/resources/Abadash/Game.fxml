@@ -2,10 +2,12 @@
 
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
@@ -21,9 +23,16 @@
         </font>
       </Text>
     </HBox>
+    <VBox fx:id="debugBox" prefHeight="400" prefWidth="200" layoutY="20" layoutX="20" visible="false">
+      <Text fx:id="debugFramerate" text="FPS: ">
+        <font>
+          <Font size="20" />
+        </font>
+      </Text>
+    </VBox>
     <ImageView fx:id="menuBtn" fitWidth="50" fitHeight="50" layoutY="20">
-            <image>
-                <Image url="@icons/home.png" />
-            </image>
-        </ImageView>
+      <image>
+          <Image url="@icons/home.png" />
+      </image>
+    </ImageView>
 </Pane>

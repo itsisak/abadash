@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.MediaPlayer;
 
 import java.util.List;
 
@@ -24,11 +25,12 @@ public class Player extends Entity {
     private double velocityY;
     private boolean onGround;
     private boolean dead = false;
-
     private ParticleManager jumpTrail;
-    public Player(double x, double y) {
+    private MediaPlayer deathSound;
+    public Player(double x, double y, MediaPlayer deathSound) {
         this.x = x * BLOCK_SIZE + SCENE_WIDTH / 4;
         this.y = FLOOR_HEIGHT - y * BLOCK_SIZE;
+        this.deathSound = deathSound;
 
         this.sprite = new Sprite("Abadash/sprites/webkom.png");
         this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, BLOCK_SIZE, BLOCK_SIZE)));
@@ -70,6 +72,7 @@ public class Player extends Entity {
 
     public void kill() {
         dead = true;
+        deathSound.play();
     }
 
     public void setVelocityY(double velocityY) {

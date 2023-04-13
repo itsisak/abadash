@@ -3,6 +3,7 @@ package Abadash.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.text.Text;
@@ -42,9 +43,12 @@ public class GameController {
     @FXML private ImageView menuBtn;
     @FXML private HBox attemptTextBox;
     @FXML private Text attemptText;
+    @FXML private VBox debugBox;
+    @FXML private Text debugFramerate;
 
     private ViewController viewController;
     private InputManager inputManager;
+    private AudioManager audioManager;
     private AnimationTimer animationTimer;
     private Player player;
     private List<Entity> entities;
@@ -60,9 +64,11 @@ public class GameController {
 
     public void initialize() {
         inputManager = new InputManager();
+        audioManager = new AudioManager();
 
         whichMap = "A3";
         gamePane.getStyleClass().add(whichMap);
+        debugBox.setVisible(DEBUG_MODE);
 
         // Setting variables defined in Constants
         canvas.setWidth(SCENE_WIDTH);
@@ -81,7 +87,8 @@ public class GameController {
             public void handle(long currentTime) {
                 double deltaTime = (currentTime - lastFrameTime) / 1000000000.0;
                 lastFrameTime = currentTime;
-
+                
+                debugFramerate.setText("FPS: " + Math.round(1d / deltaTime));
                 update(deltaTime);
                 render(canvas.getGraphicsContext2D());
             }
@@ -110,6 +117,7 @@ public class GameController {
         }
 
         if (inputManager.isClicked(KeyCode.R) || player.isDead()) {
+            audioManager.restartAudio("death");
             restart();
         }
     }
@@ -130,7 +138,7 @@ public class GameController {
 
     private void loadEntities() {
         entities = new ArrayList<>();
-        player = new Player(0, 1);
+        player = new Player(0, 1, audioManager.getAudio("death"));
         Map map = new Map(whichMap);
         goalPos = map.getGoalPos() * BLOCK_SIZE;
 
@@ -141,6 +149,7 @@ public class GameController {
     }
 
     protected void startGame() {
+        audioManager.playAudio(whichMap);
         animationTimer.start();
         startTime = System.nanoTime();
         attempts = 0;
@@ -177,6 +186,7 @@ public class GameController {
         attempts++;
         attemptText.setText("ATTEMPT " + attempts);
         loadEntities();
+        audioManager.restartAudio(whichMap);
     }
 
     protected void setWhichMap(String whichMap) {
