@@ -4,17 +4,30 @@
     /* -fx-background-image: url("icons/background8.gif");
     -fx-background-repeat: none;
     -fx-background-size: cover; */
+    /* -fx-background-color: rgb(19, 92, 196); */
     /* -fx-background-color: linear-gradient(to bottom, rgb(0, 51, 51), rgb(0, 204, 204)); */
     -fx-background-color: transparent;
 }
 
-.stageTitle, #title, #attemptText {
+#stageContainer {
+    /* -fx-background-color: rgb(19, 92, 196); */
+}
+
+.stageTitle, .progressText, #title, #attemptText {
     -fx-font-weight: bold;
     /* -fx-font-family: "Changa One", cursive; */
     -fx-font-family: 'Press Start 2P', cursive;
     -fx-fill: white;
     -fx-stroke: rgb(0, 32, 16);
     -fx-stroke-width: 2px;
+}
+
+.progressBackground {
+    -fx-fill: rgb(120, 120, 120);
+}
+
+.progress {
+    -fx-fill: red;
 }
 
 .pageIndicatorCircle {

@@ -16,6 +16,11 @@ import javafx.scene.paint.Stop;
 import javafx.scene.input.KeyCode;
 import javafx.animation.AnimationTimer;
 
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,8 +40,11 @@ public class GameController {
     private AnimationTimer animationTimer;
     private Player player;
     private List<Entity> entities;
+    private String whichMap; 
     private int attempts;
-    private String whichMap = "A3"; 
+    private long startTime;
+    private double goalPos;
+    private static boolean hasWon;
 
     protected GameController(ViewController viewController) {
         this.viewController = viewController;
@@ -45,6 +53,7 @@ public class GameController {
     public void initialize() {
         inputManager = new InputManager();
 
+        whichMap = "A3";
         gamePane.getStyleClass().add(whichMap);
 
         // Setting variables defined in Constants
@@ -70,7 +79,6 @@ public class GameController {
             }
         };
 
-        animationTimer.start();
         loadEntities();
     }
     
@@ -114,6 +122,7 @@ public class GameController {
         entities = new ArrayList<>();
         player = new Player(0, 10);
         Map map = new Map(whichMap);
+        goalPos = map.getGoalPos() * BLOCK_SIZE;
 
         entities.add(player);
         for (Entity e : map.getEntities()) {
@@ -123,6 +132,7 @@ public class GameController {
 
     protected void startGame() {
         animationTimer.start();
+        startTime = System.nanoTime();
         attempts = 0;
         player.kill();
 
@@ -135,6 +145,25 @@ public class GameController {
     }
 
     protected void restart() {
+        // save progress
+        double elapsedTime = (startTime - System.nanoTime()) / 1000000000.0;
+        double progress = -elapsedTime * VELOCITY_X + SCENE_WIDTH / 4;
+        int percent = (int) (progress / goalPos * 100);
+        if (percent >= 100) 
+            percent = 99;
+        if (hasWon)
+            percent = 100;
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(Path.of("src/main/resources/Abadash/logs/" + whichMap +".txt").toString(), true));
+            bufferedWriter.write(percent + "\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // restart
+        startTime = System.nanoTime();
+        hasWon = false;
         attempts++;
         attemptText.setText("ATTEMPT " + attempts);
         loadEntities();
@@ -142,5 +171,9 @@ public class GameController {
 
     protected void setWhichMap(String whichMap) {
         this.whichMap = whichMap;
+    }
+
+    public static void setHasWon(boolean b) {
+        hasWon = b;
     }
 }

@@ -65,6 +65,7 @@ public class ViewController {
                 contentPane.getChildren().setAll(stageSelectPane);
                 stageSelectPane.requestFocus();
                 stageSelectController.scrollContent(0, true);
+                // stageSelectController.updateProgress();
                 // gameController.stopGame();
                 break;
         }
@@ -73,5 +74,4 @@ public class ViewController {
     protected void setWhichMap(String whichMap) {
         gameController.setWhichMap(whichMap);
     }
-
 }
