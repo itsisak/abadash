@@ -12,8 +12,10 @@ import java.util.HashMap;
 public class AudioManager {
     private static AudioManager instance;
     private HashMap<String, MediaPlayer> mediaPlayers = new HashMap<>();
+    private double volume;
 
     private AudioManager() {
+        volume = .75;
         try {
             File[] audioDir = new File(getClass().getResource("/Abadash/audio").toURI()).listFiles(); 
             for (File audio : audioDir) {
@@ -41,6 +43,22 @@ public class AudioManager {
     public void restartAudio(String audioName) {
         stopAudio(audioName);
         playAudio(audioName);
+    }
+
+    public void toggleMute() {
+
+    }
+
+    public void changeVolume(double volume) {
+        volume = Math.min(Math.max(volume, 0), 1);
+        this.volume = volume;
+        for (MediaPlayer player : mediaPlayers.values()) {
+            player.setVolume(volume);
+        }
+    }
+
+    public double getVolume() {
+        return volume;
     }
 
 }

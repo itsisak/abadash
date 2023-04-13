@@ -59,7 +59,6 @@
 			  <argLine>--enable-preview</argLine>
 		  </configuration>
 	  </plugin>
-
 	</plugins>
   </build>
 </project>

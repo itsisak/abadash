@@ -30,7 +30,6 @@
                 <Image url="@icons/arrow.png" />
             </image>
         </ImageView>
-        <Text fx:id="pageNumber" />
         <HBox fx:id="pageIndicator" spacing="7.5" alignment="CENTER"/>
     </children>
 </Pane>
