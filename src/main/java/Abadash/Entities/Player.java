@@ -7,12 +7,14 @@ import Abadash.Particles.ParticleFade;
 import Abadash.Particles.ParticleManager;
 import Abadash.Particles.ParticleShrink;
 import Abadash.Sprite;
+import Abadash.Controllers.AudioManager;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.MediaPlayer;
 
 import java.util.List;
 
@@ -24,7 +26,6 @@ public class Player extends Entity {
     private double velocityY;
     private boolean onGround;
     private boolean dead = false;
-
     private ParticleManager jumpTrail;
     public Player(double x, double y) {
         this.x = x * BLOCK_SIZE + SCENE_WIDTH / 4;
@@ -70,10 +71,18 @@ public class Player extends Entity {
 
     public void kill() {
         dead = true;
+        AudioManager.getInstance().playAudio("death");
+    }
+
+    public void startKill() {
+        dead = true;
     }
 
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;
+    }
+    public double getVelocityY() {
+        return velocityY;
     }
     public void setOnGround(boolean onGround) {
         this.onGround = onGround;
