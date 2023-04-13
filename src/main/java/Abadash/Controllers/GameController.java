@@ -14,6 +14,10 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.input.KeyCode;
+
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.animation.AnimationTimer;
 
 import java.io.FileWriter;
@@ -26,6 +30,10 @@ import java.util.List;
 
 import Abadash.Entities.*;
 import Abadash.Map;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
+
 import static Abadash.Constants.*;
 
 public class GameController {
@@ -89,7 +97,8 @@ public class GameController {
         if (inputManager.isPressed(KeyCode.SPACE) || inputManager.isPressed(KeyCode.UP)) {
             player.jump();
         }
-        player.setOnGround(true);
+        
+        player.setOnGround(false);
         for (Entity entity : entities) {
             if (entity != player) {
                 entity.setX(entity.getX() - VELOCITY_X * deltaTime);
@@ -99,6 +108,7 @@ public class GameController {
             }
             entity.update(deltaTime);
         }
+
         if (inputManager.isClicked(KeyCode.R) || player.isDead()) {
             restart();
         }
@@ -120,7 +130,7 @@ public class GameController {
 
     private void loadEntities() {
         entities = new ArrayList<>();
-        player = new Player(0, 10);
+        player = new Player(0, 1);
         Map map = new Map(whichMap);
         goalPos = map.getGoalPos() * BLOCK_SIZE;
 

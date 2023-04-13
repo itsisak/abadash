@@ -10,5 +10,5 @@ public final class Constants {
     public static final double SCENE_HEIGHT = 720;
     public static final double FADE_DISTANCE = SCENE_WIDTH/1280 * 90;
     public static final double FLOOR_HEIGHT = SCENE_HEIGHT - BLOCK_SIZE * 2;
-    public static final boolean DEBUG_MODE = true;
+    public static final boolean DEBUG_MODE = false;
 }

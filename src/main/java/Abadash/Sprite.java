@@ -11,6 +11,7 @@ public class Sprite {
     private double width = BLOCK_SIZE;
     private double height = BLOCK_SIZE;
     private double angle = 0;
+    private double opacity = 1;
     private boolean dynamicOpacity = true;
 
     public Sprite(String imagePath) {
@@ -23,27 +24,13 @@ public class Sprite {
         setHeight(height);
     }
 
-    public void render(GraphicsContext gc, double x, double y) {
-        gc.save();
-        Rotate r = new Rotate(angle, x + width / 2, y + height / 2);
-        gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
-
-       if (dynamicOpacity) gc.setGlobalAlpha(calculateOpacity(x));
-        gc.drawImage(img, x, y, width, height);
-        gc.restore();
-    }
-
-    private double calculateOpacity(double x) {
-        double centeredX = x + getWidth() / 2;
-
-        if (centeredX > SCENE_WIDTH - FADE_DISTANCE) {
-            return (SCENE_WIDTH - centeredX)/FADE_DISTANCE;
-        }
-        if (centeredX < FADE_DISTANCE) {
-            return centeredX/FADE_DISTANCE;
-        }
-
-        return 1;
+    public Sprite(Sprite sprite) {
+        this.img = sprite.img;
+        this.width = sprite.getWidth();
+        this.height = sprite.getHeight();
+        this.opacity = sprite.getOpacity();
+        this.dynamicOpacity = sprite.getDynamicOpacity();
+        this.angle = sprite.getAngle();
     }
 
     public double getAngle() {
@@ -64,7 +51,37 @@ public class Sprite {
     public void setHeight(double height) {
         this.height = height;
     }
-    public void setDynamicOpacity(boolean dynamicOpacity) { 
-        this.dynamicOpacity = dynamicOpacity; 
+    public double getOpacity() {
+        return opacity;
+    }
+    public void setOpacity(double opacity) { this.opacity = opacity; }
+    public boolean getDynamicOpacity() {
+        return dynamicOpacity;
+    }
+    public void setDynamicOpacity(boolean dynamicOpacity) {
+        this.dynamicOpacity = dynamicOpacity;
+    }
+
+    public void render(GraphicsContext gc, double x, double y) {
+        gc.save();
+        Rotate r = new Rotate(angle, x + width / 2, y + height / 2);
+        gc.transform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+
+       gc.setGlobalAlpha((dynamicOpacity ? calculateOpacity(x) : 1) * opacity);
+        gc.drawImage(img, x, y, width, height);
+        gc.restore();
+    }
+
+    private double calculateOpacity(double x) {
+        double centeredX = x + getWidth() / 2;
+
+        if (centeredX > SCENE_WIDTH - FADE_DISTANCE) {
+            return (SCENE_WIDTH - centeredX)/FADE_DISTANCE;
+        }
+        if (centeredX < FADE_DISTANCE) {
+            return centeredX/FADE_DISTANCE;
+        }
+
+        return 1;
     }
 }
