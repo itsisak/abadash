@@ -2,7 +2,7 @@ package Abadash;
 
 public final class Constants {
     public static final double BLOCK_SIZE = 80;
-    public static final double VELOCITY_X = 700;
+    public static double VELOCITY_X = 700;
     public static final int LEAP_BLOCKS = 4;
     public static final double JUMP_FORCE = 8.87298*VELOCITY_X/LEAP_BLOCKS;
     public static final double GRAVITY_CONSTANT = 15.746*VELOCITY_X*VELOCITY_X/(LEAP_BLOCKS*LEAP_BLOCKS*BLOCK_SIZE);

@@ -1,5 +1,6 @@
 package Abadash.Entities;
 
+import Abadash.Camera;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -59,11 +60,11 @@ public class Spike extends Entity {
     }
 
     @Override
-    public void render(GraphicsContext gc) {
+    public void render(GraphicsContext gc, Camera camera) {
         for (int i = 0; i < amount; i++) {
             double x = direction.ordinal() % 2 == 0 ? this.x + i * BLOCK_SIZE : this.x;
             double y = direction.ordinal() % 2 == 0 ? this.y : this.y + i * BLOCK_SIZE;
-            sprite.render(gc, x, y);
+            sprite.render(gc, x, y, camera);
         }
     }
 }

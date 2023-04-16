@@ -1,5 +1,6 @@
 package Abadash.Particles;
 
+import Abadash.Camera;
 import Abadash.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -32,18 +33,15 @@ public class ParticleManager {
 
     public void update(double deltaTime) {
         if (enableSpawning) timer += deltaTime;
-        if (timer >= spawnInterval) {
-            for (Particle particle : templateParticles) {
-                particles.add(new Particle(particle));
-                particles.get(particles.size()-1).x = spawnX;
-                particles.get(particles.size()-1).y = spawnY;
-            }
+        if (spawnInterval > 0 && timer >= spawnInterval) {
+            spawn();
             timer = 0;
         }
 
         particleEffects.forEach(particleEffect -> particleEffect.update(deltaTime, particles));
         for (int i = 0; i < particles.size(); i++) {
-            particles.get(i).x -= VELOCITY_X * deltaTime;
+            particles.get(i).x += particles.get(i).vx * deltaTime;
+            particles.get(i).y += particles.get(i).vy * deltaTime;
             if (particles.get(i).dead) {
                 particles.remove(i);
                 i--;
@@ -51,8 +49,16 @@ public class ParticleManager {
         }
     }
 
-    public void render(GraphicsContext gc) {
-        particles.forEach(particle -> particle.render(gc));
+    public void spawn() {
+        for (Particle particle : templateParticles) {
+            particles.add(new Particle(particle));
+            particles.get(particles.size()-1).x = spawnX + particle.x;
+            particles.get(particles.size()-1).y = spawnY + particle.y;
+        }
+    }
+
+    public void render(GraphicsContext gc, Camera camera) {
+        particles.forEach(particle -> particle.render(gc, camera));
     }
 
     public double getSpawnX() {
@@ -72,5 +78,8 @@ public class ParticleManager {
     }
     public void setEnableSpawning(boolean enableSpawning) {
         this.enableSpawning = enableSpawning;
+    }
+    public boolean isSpawning() {
+        return enableSpawning;
     }
 }

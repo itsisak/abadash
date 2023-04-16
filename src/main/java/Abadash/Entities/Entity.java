@@ -1,5 +1,6 @@
 package Abadash.Entities;
 
+import Abadash.Camera;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.GraphicsContext;
@@ -30,8 +31,8 @@ public abstract class Entity {
         return this.hitbox.intersects(other.getX() - getX(), other.getY() - getY(), other.hitbox);
     }
     
-    public void render(GraphicsContext gc) {
-        sprite.render(gc, x, y);
+    public void render(GraphicsContext gc, Camera camera) {
+        sprite.render(gc, x, y, camera);
     }
 
     public void renderDebug(GraphicsContext gc) {

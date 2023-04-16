@@ -19,11 +19,11 @@ public class AudioManager {
         try {
             File[] audioDir = new File(getClass().getResource("/Abadash/audio").toURI()).listFiles(); 
             for (File audio : audioDir) {
-                mediaPlayers.put(audio.getName().replaceAll(".mp3|.m4a", ""), new MediaPlayer(new Media(audio.toURI().toString())));
+                mediaPlayers.put(audio.getName().replaceAll(".mp3|.m4a|.wav", ""), new MediaPlayer(new Media(audio.toURI().toString())));
             }
         } catch (URISyntaxException e) {
             e.printStackTrace();
-        } 
+        }
     }
 
     public static AudioManager getInstance() {
