@@ -37,7 +37,8 @@ public class Player extends Entity {
         this.y = FLOOR_HEIGHT - y * BLOCK_SIZE;
 
         this.sprite = new Sprite("Abadash/sprites/webkom.png");
-        this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, BLOCK_SIZE, BLOCK_SIZE)));
+        //this.hitbox = new Hitbox(List.of(new Rectangle2D(0, 0, BLOCK_SIZE, BLOCK_SIZE)));
+        this.hitbox = new Hitbox(List.of(new Rectangle2D(BLOCK_SIZE * 0.2, 0, BLOCK_SIZE * 0.6, BLOCK_SIZE)));
 
         Particle dust = new Particle(new Sprite("Abadash/sprites/dust.png", BLOCK_SIZE * 0.4 ,BLOCK_SIZE * 0.4));
         dust.sprite.setOpacity(0.1);
@@ -110,9 +111,9 @@ public class Player extends Entity {
     public void kill() {
         if (!dead) {
             deathExplosion.spawn();
+            AudioManager.getInstance().playAudio("death");
         }
         dead = true;
-        AudioManager.getInstance().playAudio("death");
     }
 
     public void startKill() {

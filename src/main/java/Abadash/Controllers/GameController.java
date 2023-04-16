@@ -68,8 +68,8 @@ public class GameController {
 
     public void initialize() {
         inputManager = new InputManager();
-        camera = new Camera(0, 0);
-        camera.setX(-SCENE_WIDTH/4);
+
+        camera = new Camera(-SCENE_WIDTH/4, 0);
 
         whichMap = "A3";
         gamePane.getStyleClass().add(whichMap);
@@ -104,11 +104,16 @@ public class GameController {
 
         loadEntities();
     }
-    
+    private double deathTimer = 0;
+    private boolean hasStarted = false;
     private void update(double deltaTime) {
         if (hasWon) {
             viewController.changeView("Menu");
             hasWon = false;
+        }
+        if(!hasStarted) {
+            hasStarted = true;
+            return;
         }
         if (inputManager.isPressed(KeyCode.ESCAPE)) {
             viewController.changeView("Menu");
@@ -131,8 +136,12 @@ public class GameController {
             restart();
         }
 
-        if (player.isDead()) camera.slowDown(deltaTime);
-        camera.update(deltaTime, goalPos);
+        if (player.isDead()) {
+            camera.slowDown(deltaTime);
+            deathTimer+=deltaTime;
+            if (deathTimer > 1) restart();
+        }
+        camera.update(deltaTime, player, goalPos);
     }
 
     private void render(GraphicsContext gc) {
@@ -175,11 +184,12 @@ public class GameController {
         animationTimer.start();
         startTime = System.nanoTime();
         attempts = 0;
-        player.startKill();
         camera = new Camera(-SCENE_WIDTH/4, 0);
 
         gamePane.getStyleClass().clear();
         gamePane.getStyleClass().add(whichMap);
+        deathTimer = 0;
+        loadEntities();
     }
 
     protected void stopGame() {
@@ -188,6 +198,8 @@ public class GameController {
     }
 
     protected void restart() {
+        deathTimer = 0;
+        AudioManager.getInstance().stopAudio("death");
         // save progress
         int percent = getProgressPercent();
         if (percent >= 100) 
