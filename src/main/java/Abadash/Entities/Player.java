@@ -111,9 +111,9 @@ public class Player extends Entity {
     public void kill() {
         if (!dead) {
             deathExplosion.spawn();
+            AudioManager.getInstance().playAudio("death");
         }
         dead = true;
-        AudioManager.getInstance().playAudio("death");
     }
 
     public void startKill() {

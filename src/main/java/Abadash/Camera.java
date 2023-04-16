@@ -1,5 +1,6 @@
 package Abadash;
 
+import Abadash.Entities.Player;
 import javafx.scene.canvas.GraphicsContext;
 
 import static Abadash.Constants.*;
@@ -21,8 +22,11 @@ public class Camera {
         }else speed = 0;
     }
 
-    public void update(double deltaTime, double goalPos) {
+    public void update(double deltaTime, Player player, double goalPos) {
         this.x += speed * deltaTime;
+        if (!player.isDead()) {
+            setX(player.getX() - SCENE_WIDTH / 4);
+        }
         this.x = Math.min(this.x, goalPos - SCENE_WIDTH + BLOCK_SIZE);
     }
     public double getX() {

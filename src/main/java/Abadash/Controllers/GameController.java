@@ -66,7 +66,6 @@ public class GameController {
     }
 
     public void initialize() {
-        System.out.println("gamecontroller init");
         inputManager = new InputManager();
 
         camera = new Camera(-SCENE_WIDTH/4, 0);
@@ -137,10 +136,7 @@ public class GameController {
             deathTimer+=deltaTime;
             if (deathTimer > 1) restart();
         }
-        camera.update(deltaTime, goalPos);
-        if (!player.isDead()) {
-            camera.setX(player.getX() - SCENE_WIDTH / 4);
-        }
+        camera.update(deltaTime, player, goalPos);
     }
 
     private void render(GraphicsContext gc) {
@@ -191,6 +187,7 @@ public class GameController {
 
     protected void restart() {
         deathTimer = 0;
+        AudioManager.getInstance().stopAudio("death");
         // save progress
         int percent = getProgressPercent();
         if (percent >= 100) 
