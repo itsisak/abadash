@@ -23,7 +23,6 @@ public class ViewController {
     private final StageSelectController stageSelectController = new StageSelectController(this);
 
     public void initialize() {
-        System.out.println("viewcontroller init");
         // load all pages
         FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/Abadash/Menu.fxml"));
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/Abadash/Game.fxml"));

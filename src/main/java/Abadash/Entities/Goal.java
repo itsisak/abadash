@@ -9,6 +9,8 @@ import java.util.List;
 import Abadash.Sprite;
 import Abadash.Hitbox;
 import Abadash.Controllers.GameController;
+import Abadash.Controllers.ViewController;
+
 import static Abadash.Constants.FLOOR_HEIGHT;
 import static Abadash.Constants.BLOCK_SIZE;
 public class Goal extends Entity {
