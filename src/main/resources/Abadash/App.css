@@ -1,21 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@1&family=Chivo+Mono&family=Press+Start+2P&display=swap');
 
 .root {
-    /* -fx-background-image: url("icons/background8.gif");
-    -fx-background-repeat: none;
-    -fx-background-size: cover; */
-    /* -fx-background-color: rgb(19, 92, 196); */
-    /* -fx-background-color: linear-gradient(to bottom, rgb(0, 51, 51), rgb(0, 204, 204)); */
     -fx-background-color: transparent;
 }
 
-#stageContainer {
-    /* -fx-background-color: rgb(19, 92, 196); */
-}
-
 .stageTitle, .progressText, #title, #attemptText {
-    /* -fx-font-weight: bold; */
-    /* -fx-font-family: "Changa One", cursive; */
     -fx-font-family: 'Press Start 2P', cursive;
     -fx-fill: white;
     -fx-stroke: rgb(0, 32, 16);
@@ -38,11 +27,12 @@
     -fx-fill: rgb(120, 120, 120);
 }
 
-#githubBtn, #playBtn, #menuBtn, #selectBtn, #nextStageBtn, #previousStageBtn {
+#playBtn, #menuBtn, #selectBtn, #nextStageBtn, #previousStageBtn, #footer * {
     -fx-cursor: hand;
 }
 
 #menuPane, #stageSelectPane, .A3 {
+    /* -fx-background-color: linear-gradient(to bottom, rgb(0, 51, 51), rgb(0, 204, 204), rgb(0, 204, 204), rgb(0, 204, 204), rgb(0, 51, 51)); */
     -fx-background-color: linear-gradient(to bottom, rgb(0, 51, 51), rgb(0, 204, 204));
 }
 
@@ -58,4 +48,21 @@
 
 #debugTitle {
     -fx-font-size: 10;
+}
+
+
+#volume {
+    -fx-background: red;
+    -fx-border-color: black; 
+    -fx-border-width: 1 1 1 1;
+    -fx-border-style: solid;
+    -fx-border-radius: 100;
+}
+
+#volumeBackground {
+    -fx-fill: white;
+}
+
+#volumeSlider {
+    -fx-fill: lightgreen;
 }

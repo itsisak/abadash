@@ -155,6 +155,8 @@ public class StageSelectController {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        if (best > 100) 
+            best = 100;
         return best;
     }
 

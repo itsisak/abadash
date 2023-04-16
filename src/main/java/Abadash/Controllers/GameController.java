@@ -162,6 +162,7 @@ public class GameController {
 
     protected void stopGame() {
         animationTimer.stop();
+        AudioManager.getInstance().stopAudio(whichMap);
     }
 
     protected void restart() {
