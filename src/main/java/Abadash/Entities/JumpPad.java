@@ -10,6 +10,7 @@ import Abadash.Hitbox;
 import Abadash.Sprite;
 import static Abadash.Constants.BLOCK_SIZE;
 import static Abadash.Constants.FLOOR_HEIGHT;
+import static Abadash.Constants.JUMP_FORCE;
 
 public class JumpPad extends Entity {
     protected int amount;
@@ -28,7 +29,7 @@ public class JumpPad extends Entity {
     @Override
     public void handleHitPlayer(Player player, double deltaTime) {
         player.setOnGround(true);
-        player.jump(1500);
+        player.jump(JUMP_FORCE * 1.25);
         player.update(deltaTime);
     }
 

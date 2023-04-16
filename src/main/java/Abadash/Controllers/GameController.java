@@ -60,6 +60,7 @@ public class GameController {
     private long startTime;
     private double goalPos;
     private static boolean hasWon;
+    private double colorValue = 0.01;
 
     protected GameController(ViewController viewController) {
         this.viewController = viewController;
@@ -106,6 +107,10 @@ public class GameController {
     private double deathTimer = 0;
     private boolean hasStarted = false;
     private void update(double deltaTime) {
+        if (hasWon) {
+            viewController.changeView("Menu");
+            hasWon = false;
+        }
         if(!hasStarted) {
             hasStarted = true;
             return;
@@ -143,10 +148,17 @@ public class GameController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
         // Background
-        // Stop[] stops = new Stop[] { new Stop(0, new Color(0, 0.2, 0.2, 1)), new Stop(1, new Color(0, 0.8, 0.8, 1))};
-        // LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
-        // gc.setFill(lg1);
-        // gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        if (colorValue >= 360)
+            colorValue = 0;
+        Stop[] stops = new Stop[] { new Stop(0, Color.hsb(colorValue, 1, .6, 1)), new Stop(1, Color.hsb(colorValue, 1, 1, 1))};
+        LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
+        gc.setFill(lg1);
+        gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+        switch (whichMap) {
+            case "A3" -> colorValue += 0.02;
+            case "Megalovania" -> colorValue += 1;
+            default -> colorValue += 0.2;
+        }
 
         camera.renderBegin(gc);
         entities.forEach(e -> e.render(gc, camera));
