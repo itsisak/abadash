@@ -1,5 +1,6 @@
 package Abadash.Entities;
 
+import Abadash.Camera;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -32,9 +33,9 @@ public class JumpPad extends Entity {
     }
 
     @Override
-    public void render(GraphicsContext gc) {
+    public void render(GraphicsContext gc, Camera camera) {
         for (int i = 0; i < amount; i++) {
-            sprite.render(gc, x + i * BLOCK_SIZE, y);
+            sprite.render(gc, x + i * BLOCK_SIZE, y, camera);
         }
     }
     

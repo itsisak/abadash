@@ -62,18 +62,18 @@ public class Sprite {
         this.dynamicOpacity = dynamicOpacity;
     }
 
-    public void render(GraphicsContext gc, double x, double y) {
+    public void render(GraphicsContext gc, double x, double y, Camera camera) {
         gc.save();
         Rotate r = new Rotate(angle, x + width / 2, y + height / 2);
         gc.transform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
 
-       gc.setGlobalAlpha((dynamicOpacity ? calculateOpacity(x) : 1) * opacity);
+       gc.setGlobalAlpha((dynamicOpacity ? calculateOpacity(x, camera) : 1) * opacity);
         gc.drawImage(img, x, y, width, height);
         gc.restore();
     }
 
-    private double calculateOpacity(double x) {
-        double centeredX = x + getWidth() / 2;
+    private double calculateOpacity(double x, Camera camera) {
+        double centeredX = x + getWidth() / 2 - camera.getX();
 
         if (centeredX > SCENE_WIDTH - FADE_DISTANCE) {
             return (SCENE_WIDTH - centeredX)/FADE_DISTANCE;

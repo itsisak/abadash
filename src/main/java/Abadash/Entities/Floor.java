@@ -1,5 +1,6 @@
 package Abadash.Entities;
 
+import Abadash.Camera;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -29,7 +30,7 @@ public class Floor extends Entity {
     }
 
     @Override
-    public void render(GraphicsContext gc) {
-        sprite.render(gc, 0, FLOOR_HEIGHT);
+    public void render(GraphicsContext gc, Camera camera) {
+        sprite.render(gc, camera.getX(), FLOOR_HEIGHT, camera);
     }
 }

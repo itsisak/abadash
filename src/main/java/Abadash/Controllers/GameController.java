@@ -1,5 +1,6 @@
 package Abadash.Controllers;
 
+import Abadash.Camera;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -53,7 +54,8 @@ public class GameController {
     private AnimationTimer animationTimer;
     private Player player;
     private List<Entity> entities;
-    private String whichMap; 
+    private String whichMap;
+    private Camera camera;
     private int attempts;
     private long startTime;
     private double goalPos;
@@ -65,6 +67,8 @@ public class GameController {
 
     public void initialize() {
         inputManager = new InputManager();
+        camera = new Camera(0, 0);
+        camera.setX(-SCENE_WIDTH/4);
 
         whichMap = "A3";
         gamePane.getStyleClass().add(whichMap);
@@ -87,7 +91,7 @@ public class GameController {
             public void handle(long currentTime) {
                 double deltaTime = (currentTime - lastFrameTime) / 1000000000.0;
                 lastFrameTime = currentTime;
-                
+
                 debugFramerate.setText("FPS: " + Math.round(1d / deltaTime));
                 debugVelocityY.setText("VelocityY: " + (Math.round(player.getVelocityY())));
                 debugProgress.setText("Progress: " + getProgressPercent() + "%");
@@ -95,6 +99,7 @@ public class GameController {
                 render(canvas.getGraphicsContext2D());
             }
         };
+
 
         loadEntities();
     }
@@ -106,11 +111,10 @@ public class GameController {
         if (inputManager.isPressed(KeyCode.SPACE) || inputManager.isPressed(KeyCode.UP)) {
             player.jump();
         }
-        
-        player.setOnGround(false);
+
         for (Entity entity : entities) {
             if (entity != player) {
-                entity.setX(entity.getX() - VELOCITY_X * deltaTime);
+                //entity.setX(entity.getX() - VELOCITY_X * deltaTime);
                 if (entity.collidesWith(player)) {
                     entity.handleHitPlayer(player, deltaTime);
                 }
@@ -118,9 +122,12 @@ public class GameController {
             entity.update(deltaTime);
         }
 
-        if (inputManager.isClicked(KeyCode.R) || player.isDead()) {
+        if (inputManager.isClicked(KeyCode.R)) {
             restart();
         }
+
+        if (player.isDead()) camera.slowDown(deltaTime);
+        camera.update(deltaTime, goalPos);
     }
 
     private void render(GraphicsContext gc) {
@@ -131,10 +138,12 @@ public class GameController {
         // LinearGradient lg1 = new LinearGradient(0, 0, 0, 0.75, true, CycleMethod.NO_CYCLE, stops);
         // gc.setFill(lg1);
         // gc.fillRect(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
-        
-        entities.forEach(e -> e.render(gc));
+
+        camera.renderBegin(gc);
+        entities.forEach(e -> e.render(gc, camera));
         if (DEBUG_MODE)
             entities.forEach(e -> e.renderDebug(gc));
+        camera.renderEnd(gc);
     }
 
     private void loadEntities() {
@@ -155,6 +164,7 @@ public class GameController {
         startTime = System.nanoTime();
         attempts = 0;
         player.startKill();
+        camera = new Camera(-SCENE_WIDTH/4, 0);
 
         gamePane.getStyleClass().clear();
         gamePane.getStyleClass().add(whichMap);
@@ -181,6 +191,7 @@ public class GameController {
         }
 
         // restart
+        camera = new Camera(-SCENE_WIDTH/4, 0);
         startTime = System.nanoTime();
         hasWon = false;
         attempts++;

@@ -1,5 +1,6 @@
 package Abadash.Entities;
 
+import Abadash.Camera;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
 
@@ -30,10 +31,10 @@ public class Block extends Entity {
     }
 
     @Override
-    public void render(GraphicsContext gc) {
+    public void render(GraphicsContext gc, Camera camera) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                sprite.render(gc, x + j * BLOCK_SIZE, y + i * BLOCK_SIZE);
+                sprite.render(gc, x + j * BLOCK_SIZE, y + i * BLOCK_SIZE, camera);
             }
         }
     }
