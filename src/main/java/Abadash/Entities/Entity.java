@@ -45,6 +45,14 @@ public abstract class Entity {
         gc.restore();
     }
 
+    public Hitbox getHitbox() {
+        return hitbox;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
     public void handleHitPlayer(Player player, double deltaTime) {}
     public void update(double deltaTime) {}
 }

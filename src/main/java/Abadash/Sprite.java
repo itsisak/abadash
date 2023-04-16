@@ -54,6 +54,10 @@ public class Sprite {
     public double getOpacity() {
         return opacity;
     }
+    public Image getImg() {
+        return img;
+    }
+    
     public void setOpacity(double opacity) { this.opacity = opacity; }
     public boolean getDynamicOpacity() {
         return dynamicOpacity;
