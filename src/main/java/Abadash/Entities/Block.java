@@ -25,6 +25,12 @@ public class Block extends Entity {
 
     @Override
     public void handleHitPlayer(Player player, double deltaTime) {
+        final double EPSILON = 5;
+        if ((player.getX() + player.hitbox.getMaxX() / 2 < x && player.getY() + EPSILON > this.y) || player.getVelocityY() < 0) {
+            player.kill();
+            return;
+        }
+
         player.setVelocityY(0.0);
         player.setY(getY() - player.hitbox.getHeight());
         player.setOnGround(true);
