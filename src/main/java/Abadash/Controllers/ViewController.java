@@ -2,6 +2,7 @@ package Abadash.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
@@ -22,6 +23,7 @@ public class ViewController {
     private final StageSelectController stageSelectController = new StageSelectController(this);
 
     public void initialize() {
+        System.out.println("viewcontroller init");
         // load all pages
         FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/Abadash/Menu.fxml"));
         FXMLLoader gameLoader = new FXMLLoader(getClass().getResource("/Abadash/Game.fxml"));
@@ -73,5 +75,13 @@ public class ViewController {
 
     protected void setWhichMap(String whichMap) {
         gameController.setWhichMap(whichMap);
+    }
+
+    public GameController getGameControllerInstance() {
+        return gameController;
+    }
+
+    public MenuController getMenuControllerInstance() {
+        return menuController;
     }
 }

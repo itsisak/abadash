@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
+import java.awt.Component;
 import java.awt.Desktop;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -83,6 +84,7 @@ public class MenuController {
     }
 
     private void handleVolumeInteraction(MouseEvent event) {
+        System.out.println(event);
         if (mute) {
             toggleMute();
             mute = false;
@@ -95,7 +97,7 @@ public class MenuController {
         volumeSlider.setWidth(event.getSceneX() - volumeBox.getLayoutX());
     }
 
-    private void toggleMute() {
+    public void toggleMute() {
         double currentVolume = AudioManager.getInstance().getVolume();
 
         AudioManager.getInstance().changeVolume(mute ? lastVolume : 0);
@@ -105,6 +107,5 @@ public class MenuController {
         lastVolume = currentVolume;
         mute = !mute;
     }
-
     
 }

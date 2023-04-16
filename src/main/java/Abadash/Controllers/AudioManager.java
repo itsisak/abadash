@@ -61,4 +61,8 @@ public class AudioManager {
         return volume;
     }
 
+    public HashMap<String, MediaPlayer> getMediaPlayers() {
+        return mediaPlayers;
+    }
+
 }
