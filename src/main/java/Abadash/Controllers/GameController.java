@@ -66,6 +66,7 @@ public class GameController {
     }
 
     public void initialize() {
+        System.out.println("gamecontroller init");
         inputManager = new InputManager();
         camera = new Camera(0, 0);
         camera.setX(-SCENE_WIDTH/4);
@@ -213,5 +214,13 @@ public class GameController {
 
     public static void setHasWon(boolean b) {
         hasWon = b;
+    }
+
+    public List<Entity> getEntities() {
+        return entities;
+    }
+
+    public void test() {
+        System.out.println("TEST");
     }
 }
